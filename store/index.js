@@ -9,9 +9,10 @@ const store = new Vuex.Store({
   mutations: {
     signIn(state, user) {
     	console.log(user)
-    	// state.username = user.username
-    	// state.email = user.username
-    	// state.token = user.token
+    	state.user.username = user.username
+    	state.user.email = user.username
+    	state.token = user.token
+      state.message = ''
     }
   },
   actions: {
@@ -22,9 +23,13 @@ const store = new Vuex.Store({
 
   	},
   	async register({ commit, state}, { username, email, password }) {
-  		let res = await axios.post('/', { username, email, password })
-      console.log(res.user)
-  		commit('signIn', user)
+      try {
+        let res = await axios.post('/api/users', { username, email, password })
+        console.log(res)
+        commit('signIn', res)
+      } catch (error) {
+        state.message = 'Something went wrong.'
+      }
   	}
   }
 })

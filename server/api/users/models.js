@@ -17,13 +17,15 @@ const usersSchema = new mongoose.Schema({
 		unique: true,
 		require: true
 	}
+}, {
+  timestamps: true
 })
 
 const usersModel = mongoose.model('User', usersSchema)
 
 
 // hash the password if it is ever saved to the DB.
-userSchema.pre('save', async function(callback) {
+usersSchema.pre('save', async function(callback) {
 	if (!this.isModified('password')) return callback()
 	const hash = await bcrypt.hash(this.password, 10)
 	this.password = hash
