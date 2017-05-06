@@ -1,6 +1,6 @@
 <template>
 	<div id="index">
-		<p>Home {{ message }}</p>`
+		<p>Puller</p>
 	</div>
 </template>
 
