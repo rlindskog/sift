@@ -7,7 +7,7 @@ router.use('/users', usersRoutes)
 
 router.get('/', (req, res) => {
 	res.json({
-		users: 'http://localhost:8080/api/users'
+		users: `${process.env.API_URL}/users`
 	})
 })
 
