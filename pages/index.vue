@@ -1,6 +1,6 @@
 <template>
 	<div id="index">
-		<p>Home {{ message }}</p>`
+		<p>Home {{ message }}</p>
 	</div>
 </template>
 
@@ -8,7 +8,7 @@
 export default {
 	data() {
 		return {
-			message: 'Hello, world!'
+			message: 'This is home!'
 		}
 	}
 }

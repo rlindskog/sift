@@ -1,16 +1,21 @@
 <template>
 	<div>
-		<nuxt-link to="/">Home</nuxt-link>
-		<nuxt-link to="/about">About</nuxt-link>
-		<nuxt/>
+		<nav-bar />
+		<div id="content">
+			<nuxt/>
+		</div>
 	</div>
 </template>
 
 <script>
-	
+import NavBar from '~/components/NavBar.vue'
+export default {
+	components: { NavBar }
+}
 </script>
 
 <style>
-	
-
+#content {
+	margin-top: 70px;
+}
 </style>
