@@ -7,7 +7,7 @@ const store = new Vuex.Store({
     user: {},
   },
   mutations: {
-    signin(state, user) {
+    signIn(state, user) {
     	console.log(user)
     	// state.username = user.username
     	// state.email = user.username
