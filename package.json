@@ -9,10 +9,16 @@
     "dev": "nuxt",
     "start": "nuxt start",
     "build": "nuxt build",
-    "generate": "nuxt generate"
+    "generate": "nuxt generate",
+    "git": "run-s git-*",
+    "git-pull": "git pull",
+    "git-push": "git add . && git commit -m 'Update' && git push -u origin master"
   },
   "dependencies": {
     "axios": "^0.16.1",
     "nuxt": "^0.10.7"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.0.2"
   }
 }
