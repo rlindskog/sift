@@ -1,0 +1,18 @@
+{
+  "name": "sift",
+  "version": "1.0.0",
+  "description": "A site for building your writing portfolio.",
+  "main": "index.js",
+  "author": "Ryan Lindskog <r.lindskog17@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nuxt",
+    "start": "nuxt start",
+    "build": "nuxt build",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "axios": "^0.16.1",
+    "nuxt": "^0.10.7"
+  }
+}
