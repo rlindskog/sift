@@ -1,6 +1,6 @@
 <template>
 	<div id="register-form">
-		<form>
+		<form @submit.prevent="register">
 			<input
 				type="text"
 				name="username"
@@ -32,6 +32,19 @@ export default {
 			username: '',
 			email: '',
 			password: '',
+		}
+	},
+	methods: {
+		register() {
+			let payload = {
+				username: this.username,
+				email: this.email,
+				password: this.password,
+			}
+			this.$store.dispatch('register', payload)
+			this.username = ''
+			this.email = ''
+			this.password = ''
 		}
 	}
 }
