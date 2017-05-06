@@ -1,6 +1,7 @@
 <template>
 	<div id="user">
 		<p>The url is {{ url }}</p>
+		
 	</div>
 </template>
 

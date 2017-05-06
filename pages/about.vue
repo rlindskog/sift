@@ -1,6 +1,6 @@
 <template>
 	<div id="index">
-		<p>Home {{ message }}</p>
+		<p>About. {{ message }}</p>
 	</div>
 </template>
 
@@ -16,5 +16,5 @@ export default {
 
 <style>
 
-
+	
 </style>
