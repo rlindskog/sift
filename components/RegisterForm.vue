@@ -42,9 +42,9 @@ export default {
 				password: this.password,
 			}
 			this.$store.dispatch('register', payload)
-			this.username = ''
-			this.email = ''
-			this.password = ''
+			// this.username = ''
+			// this.email = ''
+			// this.password = ''
 		}
 	}
 }

@@ -35,7 +35,7 @@ if (config.dev) {
 }
 
 
-app.listen(process.env.PORT, process.env.HOST, err => {
+app.listen(process.env.API_PORT, process.env.API_HOST, err => {
 	if (err) throw err
-	console.log(`🌎 listening at http://${process.env.HOST}:${process.env.PORT}`)
+	console.log(`🌎 API listening at http://${process.env.API_HOST}:${process.env.API_PORT}`)
 })
