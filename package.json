@@ -6,7 +6,9 @@
   "author": "Ryan Lindskog <r.lindskog17@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "nuxt",
+  	"dev": "run-p dev-*",
+    "dev-nuxt": "nuxt",
+    "dev-dummy": "nodemon ./server/index --watch ./server",
     "start": "nuxt start",
     "build": "nuxt build",
     "generate": "nuxt generate",
@@ -16,9 +18,11 @@
   },
   "dependencies": {
     "axios": "^0.16.1",
+    "express": "^4.15.2",
     "nuxt": "^0.10.7"
   },
   "devDependencies": {
+    "nodemon": "^1.11.0",
     "npm-run-all": "^4.0.2"
   }
 }
