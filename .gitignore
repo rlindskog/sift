@@ -59,6 +59,7 @@ typings/
 
 # get rid of nuxt build information
 .nuxt
+build
 
 # api
 db/*
