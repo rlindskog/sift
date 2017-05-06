@@ -22,7 +22,8 @@ const store = new Vuex.Store({
 
   	},
   	async register({ commit, state}, { username, email, password }) {
-  		let user = await axios.post('/', { username, email, password })
+  		let res = await axios.post('/', { username, email, password })
+      console.log(res.user)
   		commit('signIn', user)
   	}
   }
