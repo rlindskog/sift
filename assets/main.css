@@ -7,3 +7,18 @@ body {
 .page-enter, .page-leave-to {
   opacity: 0;
 }
+
+.story-card {
+	
+	min-width: 238px;
+	min-height: 218px;
+	background-color: blue;
+}
+
+.news-article-page {
+	max-width: 92%;
+}
+
+
+
+
