@@ -9,14 +9,17 @@ const userSchema = new mongoose.Schema({
 	},
 	email: {
 		type: String,
-		unique: true,
-		require: true
+		unique: false,
 	},
 	password: {
 		type: String,
 		unique: true,
 		require: true
 	},
+	articles: [{
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'Article'
+	}]
 	// profile: {
 	// 	type: mongoose.Schema.Types.ObjectID,
 	// 	ref: 'Profile'

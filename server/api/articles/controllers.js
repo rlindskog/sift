@@ -1,4 +1,7 @@
 import articleModel from './models'
+import userModel from '../users/models'
+import uuid from 'uuid'
+const slug = require('slug')
 
 export const articles = {
 	async get(req, res) {
@@ -29,6 +32,30 @@ export const articles = {
 				mixed
 			})
 			let article = await newArticle.save()
+			let sluggedAuthor = slug(author, {
+				lower: true
+			})
+			let user = await userModel.findOne({ username: sluggedAuthor })
+			console.log(user)
+			if (!user) {
+				console.log("USER DOESN'T EXIST")
+				let newUser = new userModel({
+					username: sluggedAuthor,
+					password: uuid.v4().toString(),
+					articles: [
+						article._id
+					]
+				})
+				console.log(newUser)
+				let generatedUser = await newUser.save()
+				console.log('saved a user', generatedUser)
+			} else {
+				user.articles.push(article._id)
+				await user.save()
+				console.log('saved a user', generatedUser)
+			}
+
+
 			res.json(article)
 		} catch(error) {
 			console.log(error)
@@ -88,8 +115,6 @@ export const articleId = {
 			console.log(error)
 			res.status(500).json({ error: 'Internal Server Error.' })
 		}
-		
-
 	}
 }
 
