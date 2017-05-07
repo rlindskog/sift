@@ -5,13 +5,24 @@
 			<!-- TODO add image argument passing -->
 			<articleAuthorSubProfile />
 
-			<h2 class="medium-h1"><b>France Chooses a Leader, and Takes a Step Into the Unknown</b></h2>
+			<h2 class="medium-h1"><b>Melinda Gates and Fei-Fei Li Want to Liberate AI from “Guys With Hoodies”</b></h2>
 
-			<h1></h1>
+			<h1>These two female technologists discuss the promises of artificial intelligence — and how to diversify the field.</h1>
 
 			<br />
 
-			<p class="story-body-text story-content" data-para-count="328" data-total-count="328">PARIS — <a href="http://topics.nytimes.com/top/news/international/countriesandterritories/france/index.html?inline=nyt-geo" title="More news and information about France." class="meta-loc">France</a>’s <a href="https://www.nytimes.com/interactive/2017/05/07/world/europe/live-french-election-analysis.html">presidential election on Sunday</a> has already broken all kinds of barriers in a country whose politics seemed frozen for decades. The two candidates are outsiders. The political establishment has been elbowed aside. The tone of the race between the insurgents has shocked many for its raw anger and insolence.</p>
+			<p>Artificial intelligence has a diversity problem. Too many of the people creating it share a similar background. To renowned researcher Fei-Fei Li, this paucity of viewpoints constitutes a crisis: “As an educator, as a woman, as a woman of color, as a mother, I’m increasingly worried,” she says. “AI is about to make the biggest changes to humanity, and we’re missing a whole generation of diverse technologists and leaders.”
+
+			From the chair next to her, Melinda Gates affirms this, adding, “If we don’t get women and people of color at the table — real technologists doing the real work — we will bias systems. Trying to reverse that a decade or two from now will be so much more difficult, if not close to impossible.”
+			</p>
+			<p>
+			Both women are powerful technologists. As chief scientist of artificial intelligence and machine learning for Google Cloud, Li is currently on sabbatical from Stanford, where she directs the Stanford Artificial Intelligence Lab. Gates studied artificial intelligence in the early days of the 1980s when when she was learning to code at Duke University. She spent a decade at Microsoft before leaving and later pursuing philanthropy. Now Gates is putting her mind and her money behind a national nonprofit that Li is helping launch: AI4All.
+			
+			The name says it all. AI4All will support educational programs designed to expose underrepresented high school students to artificial intelligence. I sat down with Gates and Li last week at Stanford University to talk about how to make AI research more appealing to women, why hoodies shouldn’t be tech’s status symbol, and what it takes to work in AI.
+			</p>
+
+
+			<p class="story-body-text story-content" data-para-count="328" data-total-count="328">PARIS — <a href="http://topics.nytimes.com/top/news/international/countriesandterritories/france/index.html?inline=nyt-geo" title="More news and information about France." class="meta-loc">France</a>’s presidential election on Sunday has already broken all kinds of barriers in a country whose politics seemed frozen for decades. The two candidates are outsiders. The political establishment has been elbowed aside. The tone of the race between the insurgents has shocked many for its raw anger and insolence.</p>
 			<p class="story-body-text story-content" data-para-count="280" data-total-count="608">Then, barely an hour before the official close of campaigning at midnight Friday, the staff of the presumed front-runner, Emmanuel Macron, a 39-year-old former investment banker, announced that his campaign had been the target of a “massive and coordinated” <a href="https://www.nytimes.com/2017/05/05/world/europe/france-macron-hacking.html">hacking</a> operation.</p>
 			<p class="story-body-text story-content" data-para-count="243" data-total-count="851">Internal emails and other documents, some real, some fake, according to the campaign, were posted on 4chan, an online message board favored by white nationalists, in an apparent effort to aid his rival, Marine Le Pen, 48, the far-right leader.</p>
 			<p class="story-body-text story-content" data-para-count="226" data-total-count="1077">Saturday was a surreal day in France. The dramatic timing of the leaks, coming just as French law mandated a 44-hour media blackout before and during Sunday’s critical presidential runoff, jolted the final hours of the race.</p>
@@ -58,8 +69,7 @@ export default {
 	components: { articleAuthorSubProfile },
 	data() {
 		return {
-			articleAuthorSubProfile,
-			
+			articleAuthorSubProfile
 		}
 	}
 }

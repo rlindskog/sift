@@ -1,40 +1,32 @@
 <template>
 	<div id="index">
-		<!-- <v-card v-bind:img="image" height="500px" class="parent"> -->
-		<v-parallax :src="newyork" class="gobehind opacity goUp" id="signin-btn">
-			<div class="text-md-center centerpiece valign">
-			<b>HEADLINE</b>
-			, ORGANIZING THE WORLD'S STORIES FOR YOUR PASSIONS
-			<div>
-			<v-btn
+		<div class=" goUp text-md-center text-xs-center text-sm-center" id="test">
+			<img class="pen-img center" :src="headlinelogo">
+			<div class=" centertext valign">
+				
+				<div>
+				Portfolio for journalists. <br />
+				Trusted content for readers. <br />
+				</div>
+				<v-btn
 					light
 					default
 					class="btn-light-flat-focused"
 					router
-						
 					to="/signin"
 				>Sign In</v-btn>
-				</div>
+				</v-btn>
 			</div>
-		</v-parallax>
-		
-
-		<div class="text-md-center centerpiece">HEADLINE
-
 		</div>
-		<p>
-			
-		</p>
 	</div>
 </template>
 
 <script>
-import newyork from '~/assets/images/nyc.jpg'
-
+import headlinelogo from '~/assets/images/Headline Vertical New.svg'
 export default {
 	data() {
 		return {
-			newyork
+			 headlinelogo
 		}
 	}
 }
@@ -44,20 +36,15 @@ export default {
 .body {
 	height: 100vh;
 }
-.centerpiece {
+.centertext {
 	font-size: 25px;
-	z-index: 9;
-	position: relative; 
-	margin: auto;
-	left: 0;
-	right: 0;
-	color: white;
+	color: #333;
 
 }
 .valign {
     position: relative;
     top: 50%;
-    transform: translateY(-50%);
+    /*transform: translateY(-50%);*/
     /* vendor prefixes omitted due to brevity */
 }
 .gobehind {
@@ -67,17 +54,46 @@ export default {
 }
 .goUp {
 	margin-top: -55px;
-	position: relative;
+	
 }
-.opacity {
-	opacity: 1;
 
+.front-page {
+	min-height: 100%;
+	padding-top: 20%;
 
 }
 
 #signin-btn {
+	margin-top:2px;
 	z-index: 5;
 }
 
+.front-logo {
+	margin-top: 150px;
+	max-height: 200px;
+	max-width: 200px;
+	width: 100%;
+
+	
+}
+
+.pen-img {
+	max-width: 25%;
+	max-height: 25%;
+	display: block;
+}
+
+.center {
+	margin: 0 auto;
+	
+}
+
+
+@media (max-width: 640px) {
+	.pen-img {
+		margin-top: 200px;
+	}
+
+}
 
 </style>
