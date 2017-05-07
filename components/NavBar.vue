@@ -1,34 +1,34 @@
 <template>
-	<div >
+
 		<v-toolbar class='sticky'>
 		  	<!-- <v-toolbar-logo>Logo</v-toolbar-logo> -->
 		  	<v-toolbar-items>
 
-			  	
-			  	<img :src="headlinelogo">
 
-				<v-toolbar-title> </v-toolbar-title>
-				<v-toolbar-item primary dark ripple>
-					<v-icon small class="white--text text--darken-2">search</v-icon>
-				</v-toolbar-item>
-				<v-toolbar-item>
-					<v-icon small class="white--text text--darken-2">settings</v-icon>
-				</v-toolbar-item>
-				<span v-if="$store.state.isAuthenticated">
+        <img :src="headlinelogo">
 
-					<v-toolbar-item class="nav-item" to="/register">Register</v-toolbar-item>
-					<v-toolbar-item class="nav-item" to="/signin">Signin</v-toolbar-item>
-				</span>
-				<span v-else>
-					
-					<v-toolbar-item class="nav-item" to="/" exact>Home</v-toolbar-item>
-					<v-toolbar-item class="nav-item" to="/about">About</v-toolbar-item>
-				</span>
+      <v-toolbar-title> </v-toolbar-title>
+      <v-toolbar-item primary dark ripple>
+        <v-icon small class="white--text text--darken-2">search</v-icon>
+      </v-toolbar-item>
+      <v-toolbar-item>
+        <v-icon small class="white--text text--darken-2">settings</v-icon>
+      </v-toolbar-item>
+      <span v-if="$store.state.isAuthenticated">
+
+        <v-toolbar-item class="nav-item" to="/register">Register</v-toolbar-item>
+        <v-toolbar-item class="nav-item" to="/signin">Signin</v-toolbar-item>
+      </span>
+      <span v-else>
+
+        <v-toolbar-item class="nav-item" to="/" exact>Home</v-toolbar-item>
+        <v-toolbar-item class="nav-item" to="/about">About</v-toolbar-item>
+      </span>
 
 
-			</v-toolbar-items>
-		</v-toolbar>
-	</div>	
+    </v-toolbar-items>
+  </v-toolbar>
+
 </template>
 
 
@@ -92,8 +92,3 @@
 
 	
 </style>
-
-
-
-
-

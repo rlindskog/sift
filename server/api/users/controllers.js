@@ -19,7 +19,6 @@ export const users = {
 			let hash = await bcrypt.hash(password, 10)
 			let newUser = new usersModel({ username, email, password: hash })
 			let user = await newUser.save()
-			user.href = `${process.env.API_URL}/users/${user.username}`
 			res.json(user)
 		} catch (error) {
 			console.log(error)
@@ -31,7 +30,8 @@ export const users = {
 export const username = {
 	async get(req, res) {
 		try {
-			let username = req.body.username
+			let { username } = req.params
+			console.log(username)
 			let user = await usersModel.find({ username })
 			res.json(user)
 		} catch (error) {
@@ -67,7 +67,6 @@ export const username = {
 export const signIn = {
 	async post(req, res) {
 		try {
-
 			let { username, password } = req.body
 			let user = await usersModel.findOne({ username })
 			let hashedPassword = user.password
@@ -100,8 +99,8 @@ export const signIn = {
 	}
 }
 
-// export singOut = {
-// 	async post(req, res) {
+export const singOut = {
+	async post(req, res) {
 
-// 	}
-// }
+	}
+}

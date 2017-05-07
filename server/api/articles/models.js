@@ -18,6 +18,10 @@ const articlesSchema = new mongoose.Schema({
 		require: true,
 		unique: true,
 	},
+	body: {
+		type: String,
+		require: true
+	},
 	pub_date: {
 		type: String,
 	},

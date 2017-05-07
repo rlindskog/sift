@@ -10,9 +10,9 @@ router.post('/', users.post)
 router.post('/signin', signIn.post)
 // router.get('/signin', signIn.post)
 
-router.get('/:user', authenticate, username.get)
-router.post('/:user', authenticate, username.post)
-router.put('/:user', authenticate, username.put)
-router.delete('/:user', authenticate, username.delete)
+router.get('/:username', authenticate, username.get)
+router.post('/:username', authenticate, username.post)
+router.put('/:username', authenticate, username.put)
+router.delete('/:username', authenticate, username.delete)
 
 export default router
