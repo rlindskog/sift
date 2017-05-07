@@ -6,14 +6,14 @@
 		  	<v-col sm8 offset-sm2 >
 				
 				<ul>
-					<li><h4>{{ this.$store.state.fetched_user.username }}</h4></li>
-					<li>email: {{ this.$store.state.fetched_user.email }}</li>
-					<li>createdAt: {{ this.$store.state.fetched_user.createdAt }}</li>
-					<li>_id: {{ this.$store.state.fetched_user._id }}</li>
+					<li><h4>{{ $store.state.fetched_user.username }}</h4></li>
+					<li>email: {{ $store.state.fetched_user.email }}</li>
+					<li>createdAt: {{ $store.state.fetched_user.createdAt }}</li>
+					<li>_id: {{ $store.state.fetched_user._id }}</li>
 				</ul>
 				<article-form />
 				<div>
-				<h3>{{ this.$store.state.fetched_user.username }}'s Articles</h3>
+				<h3>{{ $store.state.fetched_user.username }}'s Articles</h3>
 				</div>
 		    <!-- <double-news-article-row title="My article" />
 		    <triple-news-article-row title="My post" />
@@ -36,6 +36,18 @@
 				</v-col>
 			</v-row>
 		</v-container>
+		<div>
+			 <v-row class="mr-3 ml-3 mt-3" v-for="article in $store.state.fetched_user.articles">
+		  	<v-col xs12 offset-xs1 sm6 offset-sm3>
+					<h4>{{article.title}}</h4>
+					<span>
+						<p v-for="author in article.author" key="author.index">{{author}}</p>
+						<p>{{article.pub_date}}, {{article.publication}}</p>
+					</span>
+					<span><a :href="article.url">Original Source</a></span>
+					</v-col>
+		  	</v-row>
+		</div>
 	</div>
 </template>
 
@@ -73,13 +85,15 @@ export default {
 	async fetch({ store, params, req }) {
 		try {
 			let token = req.cookies.token
-			let { data } = await axios.get(`users/${params.username}`, {
+			console.log('THE TOKEN:', token)
+			let { data } = await axios.get(`/api/users/${params.username}`, {
+				withCredentials: true,
 				headers: {
 					'x-access-token': token
 				}
 			})
-			let fetched_user = data[0]
-			store.commit('FETCH_USER', fetched_user)
+			console.log('FETCHED_USER', data)
+			store.commit('FETCH_USER', data)
 		} catch (error) {
 			console.log(error)
 		}

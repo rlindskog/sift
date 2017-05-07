@@ -9,9 +9,9 @@ import mongoose from 'mongoose'
 import Nuxt from 'nuxt'
 const app = express()
 
-// app.use(cors({
-// 	origin: process.env.URL
-// }))
+app.use(cors({
+	origin: process.env.API_URL
+}))
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(cookieParser())
