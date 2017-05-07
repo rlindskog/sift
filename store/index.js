@@ -1,6 +1,10 @@
 import Vuex from 'vuex'
 import axios from '~/plugins/axios'
 import Cookies from 'js-cookie'
+import jwtDecode from 'jwt-decode'
+
+
+
 
 const store = new Vuex.Store({
   state: {

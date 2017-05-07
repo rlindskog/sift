@@ -212,19 +212,28 @@ module.exports = require("bcrypt");
 __webpack_require__(1).config();
 
 module.exports = {
-  css: ['assets/main.css', 'assets/normalize.css'],
-  build: {
-    vendor: ['axios']
-  },
-  env: {
-    HOST: '127.0.0.1',
-    PORT: 3000,
-    URL: 'http://127.0.0.1:3000',
+	head: {
+		link: [{ href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons', rel: 'stylesheet' },
+		// <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet" type="text/css">
+		{ href: 'https://unpkg.com/vuetify/dist/vuetify.min.css', rel: 'stylesheet' }],
+		script: [{ src: 'https://unpkg.com/vuetify/dist/vuetify.min.js' }]
+	},
+	css: ['assets/main.css', 'assets/normalize.css'],
+	build: {
+		vendor: ['axios']
+	},
+	env: {
+		HOST: '127.0.0.1',
+		PORT: 3000,
+		URL: 'http://127.0.0.1:3000',
 
-    API_HOST: '127.0.0.1',
-    API_PORT: 3000,
-    API_URL: 'http://127.0.0.1:3000/api'
-  }
+		API_HOST: '127.0.0.1',
+		API_PORT: 3000,
+		API_URL: 'http://127.0.0.1:3000/api'
+	},
+	vue: {
+		middleware: 'vuetify'
+	}
 };
 
 /***/ },
