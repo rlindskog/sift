@@ -1,5 +1,6 @@
 import express from 'express'
 import { articles, articleId } from './controllers'
+
 const router = express.Router()
 
 router.get('/', articles.get)

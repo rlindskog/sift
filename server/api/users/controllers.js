@@ -1,4 +1,4 @@
-import usersModel from './models'
+import userModel from './models'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
 import { filterSensative } from '../../util/filtersensative'
@@ -6,7 +6,7 @@ import { filterSensative } from '../../util/filtersensative'
 export const users = {
 	async get(req, res) {
 		try {
-			let users = await usersModel.find({})
+			let users = await userModel.find({})
 			res.json(users)
 		} catch (error) {
 			console.log(error)
@@ -17,7 +17,7 @@ export const users = {
 		try {
 			let { username, email, password } = req.body
 			let hash = await bcrypt.hash(password, 10)
-			let newUser = new usersModel({ username, email, password: hash })
+			let newUser = new userModel({ username, email, password: hash })
 			let user = await newUser.save()
 			res.json(user)
 		} catch (error) {
@@ -32,7 +32,7 @@ export const username = {
 		try {
 			let { username } = req.params
 			console.log(username)
-			let user = await usersModel.find({ username })
+			let user = await userModel.find({ username })
 			res.json(user)
 		} catch (error) {
 			console.log(error)
@@ -42,7 +42,7 @@ export const username = {
 	async post(req, res) {
 		try {
 			let { username, email } = req.body
-			let user = await usersModel.findOneAndUpdate({ username }, { username, email })
+			let user = await userModel.findOneAndUpdate({ username }, { username, email })
 			res.status(200).json(user)
 		} catch (error) {
 			console.log(error)
@@ -52,7 +52,7 @@ export const username = {
 	async put(req, res) {
 		try {
 			let { username, email } = req.body
-			let user = await usersModel.findOneAndUpdate({ username }, { username, email })
+			let user = await userModel.findOneAndUpdate({ username }, { username, email })
 			res.status(201).json(user)
 		} catch (error) {
 			console.log(error)
@@ -68,7 +68,7 @@ export const signIn = {
 	async post(req, res) {
 		try {
 			let { username, password } = req.body
-			let user = await usersModel.findOne({ username })
+			let user = await userModel.findOne({ username })
 			let hashedPassword = user.password
 			let matched =	await bcrypt.compare(password, hashedPassword)
 	    if (!user) {

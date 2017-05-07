@@ -1,26 +1,34 @@
 <template>
 	<div id="register-form">
-		<form @submit.prevent="register">
-			<input
-				type="text"
-				name="username"
-				placeholder="username"
-				v-model="username">
-			<input
-				type="email"
-				name="email"
-				placeholder="email"
-				v-model="email">
-			<input
-				type="password"
-				name="password"
-				placeholder="password"
-				v-model="password">
-			<input
-				type="submit"
-				name="Submit"
-				value="Submit">
-		</form>
+		<v-row>
+			<v-col xs10 offset-xs1 sm6 offset-sm3>
+				<h5>Register</h5>
+				<form @keydown.enter="register">
+					<v-text-field
+						type="text"
+						name="username"
+						label="username"
+						v-model="username"/>
+					<v-text-field
+						type="email"
+						name="email"
+						label="email"
+						v-model="email"/>
+					<v-text-field
+						type="password"
+						name="password"
+						label="password"
+						append-icon="remove_red_eye"
+						v-model="password"/>
+					<v-btn
+						light
+						default
+						class="btn--light-flat-focused"
+						@click.native="register"
+					>Submit</v-btn>
+				</form>
+			</v-col>
+		</v-row>
 	</div>
 </template>
 
@@ -30,7 +38,7 @@ export default {
 		return {
 			username: '',
 			email: '',
-			password: '',
+			password: ''
 		}
 	},
 	methods: {
@@ -41,9 +49,9 @@ export default {
 				password: this.password,
 			}
 			this.$store.dispatch('register', payload)
-			// this.username = ''
-			// this.email = ''
-			// this.password = ''
+			this.username = ''
+			this.email = ''
+			this.password = ''
 		}
 	}
 }

@@ -19,6 +19,6 @@ body {
 	max-width: 92%;
 }
 
-
-
-
+.center {
+	margin: 0 auto;
+}
