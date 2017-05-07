@@ -3,18 +3,6 @@ import axios from '~/plugins/axios'
 import Cookies from 'js-cookie'
 import jwtDecode from 'jwt-decode'
 
-
-// initialie store on the client.
-if (process.BROWSER_BUILD) {
-  let token = Cookies.get('token')
-  let user = jwtDecode(token)
-
-  if (decoded.user) {
-    store.commit('SET_USER', { user, token })
-  }
-}
-
-
 const store = new Vuex.Store({
   state: {
     isAuthenticated: false,
@@ -41,11 +29,14 @@ const store = new Vuex.Store({
     }
   },
   actions: {
-    // nuxtServerInit({ commit }, { req }) {
-    //   if (req.user) {
-    //     commit('SET_USER', req.user)
-    //   }
-    // },
+    nuxtServerInit({ commit }, { req }) {
+      if (req.cookies.token) {
+        let token = req.cookies.token
+        let user = jwtDecode(token)
+        let data = { user, token}
+        commit('SET_USER', data)
+      }
+    },
   	async signIn({ commit, state}, { username, password }) {
       try {
         let res = await axios.post('/api/users/signin', { username, password })
@@ -69,5 +60,16 @@ const store = new Vuex.Store({
   	}
   }
 })
+
+// // initialie store on the client.
+// if (process.BROWSER_BUILD) {
+//   let token = Cookies.get('token')
+  
+//   let user = jwtDecode(token)
+//   // alert(user.email)
+//   if (user.username) {
+//     store.commit('SET_USER', { user, token })
+//   }
+// }
 
 export default store

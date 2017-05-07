@@ -1,6 +1,7 @@
-import bodyParser from 'body-parser'
 import dotenv from 'dotenv'
 dotenv.config()
+import bodyParser from 'body-parser'
+import cookieParser from 'cookie-parser'
 import express from 'express'
 import api from './api/index'
 import mongoose from 'mongoose'
@@ -10,6 +11,7 @@ const app = express()
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+app.use(cookieParser())
 
 app.use('/api', api)
 
