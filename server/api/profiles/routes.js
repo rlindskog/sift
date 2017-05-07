@@ -1,5 +1,7 @@
-// import express from 'express'
+import express from 'express'
+import { profile } from './controllers'
+const router = express.Router()
 
-// const router = express.Router()
+rotuer.get('/', profile.get)
 
-// router.get('/', )
+export default router

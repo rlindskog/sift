@@ -1,4 +1,5 @@
 import Vuex from 'vuex'
+import router from 'vue-router'
 import axios from '~/plugins/axios'
 import Cookies from 'js-cookie'
 import jwtDecode from 'jwt-decode'
@@ -76,7 +77,7 @@ const store = new Vuex.Store({
   	},
   	async register({ commit, state}, { username, email, password }) {
       try {
-        let res = await axios.post('/users', { username, email, password })
+        let res = await axios.post('/api/users', { username, email, password })
         state.message = 'Registration sucessful. Please sign in.'
       } catch (error) {
         state.message = 'Something went wrong.'

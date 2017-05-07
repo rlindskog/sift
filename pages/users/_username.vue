@@ -1,16 +1,15 @@
 <template>
 	<div id="user">
-		<profile-banner :image="newyork" :facial="face"/>
+		<profile-banner :image="newyork" :facial="dummyProfile"/>
 		<v-container fluid="fluid" class="news-article-feed">
 		  <v-row class="mr-3 ml-3 mt-3">
-		  	
-				<h4>{{ fetched_user.username }}</h4>
-				<ul>
-					<li>email: {{ fetched_user.email }}</li>
-					<li>createdAt: {{ fetched_user.createdAt }}</li>
-					<li>_id: {{ fetched_user._id }}</li>
-				</ul>
 
+				<h4>{{ this.$store.state.fetched_user.username }}</h4>
+				<ul>
+					<li>email: {{ this.$store.state.fetched_user.email }}</li>
+					<li>createdAt: {{ this.$store.state.fetched_user.createdAt }}</li>
+					<li>_id: {{ this.$store.state.fetched_user._id }}</li>
+				</ul>
 
 		    <double-news-article-row title="My article" />
 		    <triple-news-article-row title="My post" />
@@ -28,6 +27,7 @@
 
 <script>
 import face from '~/assets/images/face.png'
+import dummyProfile from '~/assets/images/user.svg'
 import newyork from '~/assets/images/nyc.jpg'
 import TripleNewsArticleRow from '~/components/TripleNewsArticleRow.vue'
 import DoubleNewsArticleRow from '~/components/DoubleNewsArticleRow.vue'
@@ -42,29 +42,28 @@ export default {
 			card_text: "sample card text",
 			face,
 			newyork,
-			fetched_user: this.$store.state.fetched_user
+			dummyProfile
 		}
 	},
 	created() {
 		let username = this.$route.params.username
 		this.$store.dispatch('fetchUser', { username })
+	},
+
+	async fetch({ store, params, req }) {
+		try {
+			let token = req.cookies.token
+			let { data } = await axios.get(`users/${params.username}`, {
+				headers: {
+					'x-access-token': token
+				}
+			})
+			let fetched_user = data[0]
+			store.commit('FETCH_USER', fetched_user)
+		} catch (error) {
+			console.log(error)
+		}
 	}
-
-
-	// async fetch({ store, params, req }) {
-	// 	try {
-	// 		let token = req.cookies.token
-	// 		let { data } = await axios.get(`users/${params.username}`, {
-	// 			headers: {
-	// 				'x-access-token': token
-	// 			}
-	// 		})
-	// 		let fetched_user = data[0]
-	// 		store.commit('FETCH_USER', fetched_user)
-	// 	} catch (error) {
-	// 		console.log(error)
-	// 	}
-	// }
 }
 </script>
 

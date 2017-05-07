@@ -1,5 +1,5 @@
 <template>
-	<div id="nav-bar">
+<!-- 	<div id="nav-bar">
 		<nav id="nav">
 			<ul v-if="$store.state.isAuthenticated">
 				<nuxt-link class="nav-item" :to="'/users/' + $store.state.user.username">Profile</nuxt-link>
@@ -12,7 +12,24 @@
 				<nuxt-link class="nav-item" to="/signin">Signin</nuxt-link>
 			</ul>
 		</nav>
-	</div>
+	</div> -->
+
+<v-toolbar class="grey">
+  <v-toolbar-side-icon></v-toolbar-side-icon>
+  <v-toolbar-title></v-toolbar-title>
+  <v-toolbar-items class="hidden-md-and-down right" v-if="$store.state.isAuthenticated">
+    <v-toolbar-item router to="/" ripple>Home</v-toolbar-item>
+    <v-toolbar-item router to="/about" ripple>About</v-toolbar-item>
+    <v-toolbar-item router to="/signout" ripple>Signout</v-toolbar-item>
+  </v-toolbar-items>
+  <v-toolbar-items class="hidden-md-and-down right" v-else>
+    <v-toolbar-item router to="/" ripple>Home</v-toolbar-item>
+    <v-toolbar-item router to="/about" ripple>About</v-toolbar-item>
+    <v-toolbar-item router to="/register" ripple>Register</v-toolbar-item>
+    <v-toolbar-item router to="/signin" ripple>Sign In</v-toolbar-item>
+  </v-toolbar-items>
+</v-toolbar>
+
 </template>
 
 <script>
@@ -20,7 +37,7 @@
 </script>
 
 <style>
-#nav-bar {
+/*#nav-bar {
 	z-index: 999;
 	top: 0;
 	position: fixed;
@@ -51,7 +68,7 @@ ul {
 .nuxt-link-active {
 	color: red;
 	transition: color .5s;
-}
+}*/
 
 	
 </style>

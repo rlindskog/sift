@@ -1,6 +1,5 @@
 <template>
 	<div id="index">
-		<p>Register {{ message }}</p>
 		<register-form />
 	</div>
 </template>

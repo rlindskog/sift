@@ -4,8 +4,7 @@
 		<v-card v-bind:img="image" height="500px" class="parent">
 			<v-row>
 				
-				<img :src="facial" class="img-circle center text-lg-center" /> 
-				
+				<img :src="facial" class="img-circle text-lg-center" /> 
 			</v-row>
 		</v-card>
 		
@@ -29,12 +28,7 @@ export default {
 
 
 .center {
-	
-    margin: auto;
-    vertical-align: middle;
-    border: 3px solid black;
-    padding: 10px;
-    background-color: green;
+	margin: 0 auto;
 }
 
 .img-circle {

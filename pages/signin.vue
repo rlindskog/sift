@@ -1,6 +1,5 @@
 <template>
 	<div id="index">
-		<p>Sign in</p>
 		<div v-if="!$store.state.isAuthenticated">
 			<sign-in-form />
 		</div>
