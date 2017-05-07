@@ -25,8 +25,6 @@ import newyork from '~/assets/images/nyc.jpg'
 import TripleNewsArticleRow from '~/components/TripleNewsArticleRow.vue'
 import DoubleNewsArticleRow from '~/components/DoubleNewsArticleRow.vue'
 import ProfileBanner from '~/components/ProfileBanner.vue'
-// username
-// email
 
 
 
