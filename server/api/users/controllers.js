@@ -2,6 +2,7 @@ import usersModel from './models'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
 import { filterSensative } from '../../util/filtersensative'
+
 export const users = {
 	async get(req, res) {
 		try {
@@ -14,10 +15,8 @@ export const users = {
 	},
 	async post(req, res) {
 		try {
-
-			console.log(req.body)
+			let { username, email, password } = req.body
 			let hash = await bcrypt.hash(password, 10)
-
 			let newUser = new usersModel({ username, email, password: hash })
 			let user = await newUser.save()
 			res.json(user)
@@ -67,6 +66,7 @@ export const username = {
 export const signIn = {
 	async post(req, res) {
 		try {
+
 			let { username, password } = req.body
 			let user = await usersModel.findOne({ username })
 			let hashedPassword = user.password

@@ -2,6 +2,9 @@
   "name": "sift",
   "version": "1.0.0",
   "description": "A site for building your writing portfolio.",
+  "engines": {
+  	"node": ">=7.0.0"
+  },
   "main": "index.js",
   "author": "Ryan Lindskog <r.lindskog17@gmail.com>",
   "license": "MIT",

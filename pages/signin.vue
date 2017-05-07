@@ -1,7 +1,13 @@
 <template>
 	<div id="index">
 		<p>SignIn {{ message }}</p>
-		<sign-in-form />
+		<div v-if="$store.state.isAuthenticated">
+			<sign-in-form />
+		</div>
+		<div v-else>
+			<h4>Welcome {{ $store.state.user.username }}!</h4>
+			<p>Check out your <nuxt-link :to="'/' + $store.state.user.username">profile</nuxt-link></p>
+		</div>
 	</div>
 </template>
 
