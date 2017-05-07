@@ -9,7 +9,7 @@ router.use('/articles', articlesRoutes)
 
 router.get('/', (req, res) => {
 	res.json({
-		users: `${process.env.API_URL}/users`
+		users: `${process.env.API_URL}/api/users`
 	})
 })
 

@@ -47,21 +47,21 @@ export default userModel
 // 			email: 'r.lindskog17@gmail.com',
 // 			admin: true,
 // 			verified: true,
-// 			href: `${process.env.API_URL}/rlindskog`
+// 			href: `${process.env.API_URL}/api/rlindskog`
 // 		},
 // 		{
 // 			username: 'john',
 // 			email: 'john@gmail.com',
 // 			admin: false,
 // 			verified: false,
-// 			href: `${process.env.API_URL}/john`
+// 			href: `${process.env.API_URL}/api/john`
 // 		},
 // 		{
 // 			username: 'jaccob',
 // 			email: 'jaccob@gmail.com',
 // 			admin: false,
 // 			verified: true,
-// 			href: `${process.env.API_URL}/jaccob`
+// 			href: `${process.env.API_URL}/api/jaccob`
 // 		},
 // 	]
 // }

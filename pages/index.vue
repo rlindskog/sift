@@ -1,35 +1,29 @@
 <template>
 	<div id="index">
 		<!-- <v-card v-bind:img="image" height="500px" class="parent"> -->
-		<v-parallax :src="newyork" class="gobehind opacity goUp">
+		<v-parallax :src="newyork" class="gobehind opacity goUp" id="signin-btn">
 			<div class="text-md-center centerpiece valign">
 			<b>HEADLINE</b>
 			, ORGANIZING THE WORLD'S STORIES FOR YOUR PASSIONS
+			<div>
+			<v-btn
+					light
+					default
+					class="btn-light-flat-focused"
+					router
+						
+					to="/signin"
+				>Sign In</v-btn>
+				</div>
 			</div>
 		</v-parallax>
-		<div class="text-md-center centerpiece">HEADLINE</div>
-		<p>Home {{ message }}</p>
+		
+
+		<div class="text-md-center centerpiece">HEADLINE
+
+		</div>
 		<p>
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
+			
 		</p>
 	</div>
 </template>
@@ -40,7 +34,6 @@ import newyork from '~/assets/images/nyc.jpg'
 export default {
 	data() {
 		return {
-			message: 'This is home!',
 			newyork
 		}
 	}
@@ -53,7 +46,7 @@ export default {
 }
 .centerpiece {
 	font-size: 25px;
-	z-index: 100;
+	z-index: 9;
 	position: relative; 
 	margin: auto;
 	left: 0;
@@ -81,5 +74,10 @@ export default {
 
 
 }
+
+#signin-btn {
+	z-index: 5;
+}
+
 
 </style>

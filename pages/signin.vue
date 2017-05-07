@@ -3,10 +3,12 @@
 		<div v-if="!$store.state.isAuthenticated">
 			<sign-in-form />
 		</div>
-		<div v-else>
+		<v-row v-else>
+			<v-col xs10 offset-xs1 sm6 offset-sm3>
 			<h4>Welcome {{ $store.state.user.username }}!</h4>
 			<p>Check out your <nuxt-link :to="'/users/' + $store.state.user.username">profile</nuxt-link></p>
-		</div>
+			</v-col>
+		</v-row>
 	</div>
 </template>
 

@@ -90,7 +90,24 @@ const store = new Vuex.Store({
       } catch (error) {
         state.message = 'Something went wrong.'
       }
-    }
+    },
+    async submitArticle({ commit, state }, { title, body }) {
+      try {
+        let { data } = await axios.post(`/api/articles/?owner=${state.user._id}`)
+        console.log(data)
+      } catch(error) {
+        state.message = 'Something went wrong.'
+      }
+    },
+    async fetchArticles({ commit, state } ) {
+      try {
+        let { data } = await axios.get(`/api/articles`)
+        console.log('DATA', data)
+        commit('FETCH_ARTICLES', data)
+      } catch(error) {
+        state.message = 'Something went wrong.'
+      }
+    },
   }
 })
 
