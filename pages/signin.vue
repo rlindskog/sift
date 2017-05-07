@@ -6,7 +6,7 @@
 		</div>
 		<div v-else>
 			<h4>Welcome {{ $store.state.user.username }}!</h4>
-			<p>Check out your <nuxt-link :to="'/' + $store.state.user.username">profile</nuxt-link></p>
+			<p>Check out your <nuxt-link :to="'/users/' + $store.state.user.username">profile</nuxt-link></p>
 		</div>
 	</div>
 </template>
