@@ -14,7 +14,9 @@ Each API puller should subclass APIPuller and implement the method `.get_article
   'url': u'http://www.newyorker.com/culture/culture-desk/remembering-chuck-berry-who-died-at-ninety?mbid=rss'}
 ```
 
-## Authentication
+Once this method is implemented, you can call `.populate_author(fullname)` and it will query the API as specified in `.get_articles_for_author` and POST the discovered entries to the `/api/articles` endpoint.
+
+## Authentication to APIs
 
 Any private credentials you don't want committed should be in `config.py` in the `credentials` dict, under a key named after the APIPuller class, e.g.:
 
