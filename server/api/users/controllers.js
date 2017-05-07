@@ -29,10 +29,12 @@ export const users = {
 
 export const username = {
 	async get(req, res) {
+		console.log(req.params)
 		try {
 			let { username } = req.params
-			console.log(username)
-			let user = await userModel.find({ username })
+			let user = await userModel.findOne({ username })
+				.populate('articles').exec()
+			console.log(user)
 			res.json(user)
 		} catch (error) {
 			console.log(error)
