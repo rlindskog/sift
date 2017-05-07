@@ -65,7 +65,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 15);
+/******/ 	return __webpack_require__(__webpack_require__.s = 16);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -196,7 +196,7 @@ usersSchema.pre('save', function () {
 /* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(14);
+module.exports = __webpack_require__(15);
 
 
 /***/ },
@@ -243,8 +243,8 @@ module.exports = {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_express__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_express___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_express__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__users_routes__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__articles_routes__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__users_routes__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__articles_routes__ = __webpack_require__(10);
 
 
 
@@ -279,14 +279,35 @@ module.exports = require("nuxt");
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_express__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_express___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_express__);
+
+// import { articles, articleId } from './controllers'
+var router = __WEBPACK_IMPORTED_MODULE_0_express___default.a.Router();
+
+// router.get('/', articles.get)
+// router.post('/', articles.post)
+
+// router.get('/:articleId', articleId.get)
+// router.post('/:articleId', articleId.post)
+// router.delete('/:articleId', articleId.delete)
+
+
+/* harmony default export */ exports["a"] = router;
+
+/***/ },
+/* 11 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_jsonwebtoken__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_jsonwebtoken__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_jsonwebtoken___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_jsonwebtoken__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_bcrypt__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_bcrypt___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_bcrypt__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_filtersensative__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_filtersensative__ = __webpack_require__(13);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return users; });
 /* harmony export (binding) */ __webpack_require__.d(exports, "c", function() { return username; });
 /* harmony export (binding) */ __webpack_require__.d(exports, "b", function() { return signIn; });
@@ -342,41 +363,43 @@ var users = {
 	}(),
 	post: function () {
 		var _ref2 = _asyncToGenerator(__WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default.a.mark(function _callee2(req, res) {
-			var hash, newUser, user;
+			var _req$body, _username, email, password, hash, newUser, user;
+
 			return __WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
 				while (1) {
 					switch (_context2.prev = _context2.next) {
 						case 0:
 							_context2.prev = 0;
-							_context2.next = 3;
+							_req$body = req.body, _username = _req$body.username, email = _req$body.email, password = _req$body.password;
+							_context2.next = 4;
 							return __WEBPACK_IMPORTED_MODULE_3_bcrypt___default.a.hash(password, 10);
 
-						case 3:
+						case 4:
 							hash = _context2.sent;
-							newUser = new __WEBPACK_IMPORTED_MODULE_1__models__["a" /* default */]({ username: username, email: email, password: hash });
-							_context2.next = 7;
+							newUser = new __WEBPACK_IMPORTED_MODULE_1__models__["a" /* default */]({ username: _username, email: email, password: hash });
+							_context2.next = 8;
 							return newUser.save();
 
-						case 7:
+						case 8:
 							user = _context2.sent;
 
 							res.json(user);
-							_context2.next = 15;
+							_context2.next = 16;
 							break;
 
-						case 11:
-							_context2.prev = 11;
+						case 12:
+							_context2.prev = 12;
 							_context2.t0 = _context2['catch'](0);
 
 							console.log(_context2.t0);
 							res.status(500).json({ error: 'Error 500. Internal server error' });
 
-						case 15:
+						case 16:
 						case 'end':
 							return _context2.stop();
 					}
 				}
-			}, _callee2, this, [[0, 11]]);
+			}, _callee2, this, [[0, 12]]);
 		}));
 
 		function post(_x3, _x4) {
@@ -390,16 +413,16 @@ var users = {
 var username = {
 	get: function () {
 		var _ref3 = _asyncToGenerator(__WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default.a.mark(function _callee3(req, res) {
-			var _username, user;
+			var _username2, user;
 
 			return __WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
 				while (1) {
 					switch (_context3.prev = _context3.next) {
 						case 0:
 							_context3.prev = 0;
-							_username = req.body.username;
+							_username2 = req.body.username;
 							_context3.next = 4;
-							return __WEBPACK_IMPORTED_MODULE_1__models__["a" /* default */].find({ username: _username });
+							return __WEBPACK_IMPORTED_MODULE_1__models__["a" /* default */].find({ username: _username2 });
 
 						case 4:
 							user = _context3.sent;
@@ -431,16 +454,16 @@ var username = {
 	}(),
 	post: function () {
 		var _ref4 = _asyncToGenerator(__WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default.a.mark(function _callee4(req, res) {
-			var _req$body, _username2, _email, user;
+			var _req$body2, _username3, email, user;
 
 			return __WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
 				while (1) {
 					switch (_context4.prev = _context4.next) {
 						case 0:
 							_context4.prev = 0;
-							_req$body = req.body, _username2 = _req$body.username, _email = _req$body.email;
+							_req$body2 = req.body, _username3 = _req$body2.username, email = _req$body2.email;
 							_context4.next = 4;
-							return __WEBPACK_IMPORTED_MODULE_1__models__["a" /* default */].findOneAndUpdate({ username: _username2 }, { username: _username2, email: _email });
+							return __WEBPACK_IMPORTED_MODULE_1__models__["a" /* default */].findOneAndUpdate({ username: _username3 }, { username: _username3, email: email });
 
 						case 4:
 							user = _context4.sent;
@@ -472,16 +495,16 @@ var username = {
 	}(),
 	put: function () {
 		var _ref5 = _asyncToGenerator(__WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default.a.mark(function _callee5(req, res) {
-			var _req$body2, _username3, _email2, user;
+			var _req$body3, _username4, email, user;
 
 			return __WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee5$(_context5) {
 				while (1) {
 					switch (_context5.prev = _context5.next) {
 						case 0:
 							_context5.prev = 0;
-							_req$body2 = req.body, _username3 = _req$body2.username, _email2 = _req$body2.email;
+							_req$body3 = req.body, _username4 = _req$body3.username, email = _req$body3.email;
 							_context5.next = 4;
-							return __WEBPACK_IMPORTED_MODULE_1__models__["a" /* default */].findOneAndUpdate({ username: _username3 }, { username: _username3, email: _email2 });
+							return __WEBPACK_IMPORTED_MODULE_1__models__["a" /* default */].findOneAndUpdate({ username: _username4 }, { username: _username4, email: email });
 
 						case 4:
 							user = _context5.sent;
@@ -535,22 +558,22 @@ var username = {
 var signIn = {
 	post: function () {
 		var _ref7 = _asyncToGenerator(__WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default.a.mark(function _callee7(req, res) {
-			var _req$body3, _username4, _password, user, hashedPassword, matched, token;
+			var _req$body4, _username5, password, user, hashedPassword, matched, token;
 
 			return __WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee7$(_context7) {
 				while (1) {
 					switch (_context7.prev = _context7.next) {
 						case 0:
 							_context7.prev = 0;
-							_req$body3 = req.body, _username4 = _req$body3.username, _password = _req$body3.password;
+							_req$body4 = req.body, _username5 = _req$body4.username, password = _req$body4.password;
 							_context7.next = 4;
-							return __WEBPACK_IMPORTED_MODULE_1__models__["a" /* default */].findOne({ username: _username4 });
+							return __WEBPACK_IMPORTED_MODULE_1__models__["a" /* default */].findOne({ username: _username5 });
 
 						case 4:
 							user = _context7.sent;
 							hashedPassword = user.password;
 							_context7.next = 8;
-							return __WEBPACK_IMPORTED_MODULE_3_bcrypt___default.a.compare(_password, hashedPassword);
+							return __WEBPACK_IMPORTED_MODULE_3_bcrypt___default.a.compare(password, hashedPassword);
 
 						case 8:
 							matched = _context7.sent;
@@ -610,14 +633,14 @@ var signIn = {
 // }
 
 /***/ },
-/* 11 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_express__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_express___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_express__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__controllers__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__controllers__ = __webpack_require__(11);
 
 
 
@@ -638,7 +661,7 @@ router.delete('/:user', __WEBPACK_IMPORTED_MODULE_2__controllers__["c" /* userna
 /* harmony default export */ exports["a"] = router;
 
 /***/ },
-/* 12 */
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -654,19 +677,19 @@ function filterSensative(user) {
 }
 
 /***/ },
-/* 13 */
+/* 14 */
 /***/ function(module, exports) {
 
 module.exports = require("jsonwebtoken");
 
 /***/ },
-/* 14 */
+/* 15 */
 /***/ function(module, exports) {
 
 module.exports = require("regenerator-runtime");
 
 /***/ },
-/* 15 */
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -721,26 +744,6 @@ app.listen(process.env.API_PORT, process.env.API_HOST, function (err) {
   if (err) throw err;
   console.log('\uD83C\uDF0E API listening at http://' + process.env.API_HOST + ':' + process.env.API_PORT);
 });
-
-/***/ },
-/* 16 */
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_express__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_express___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_express__);
-
-
-var router = __WEBPACK_IMPORTED_MODULE_0_express___default.a.Router();
-
-router.get('/', articles.get);
-router.post('/', articles.post);
-
-router.get('/:articleId', articleId.get);
-router.post('/:articleId', articleId.post);
-router.delete('/:articleId', articleId.delete);
-
-/* harmony default export */ exports["a"] = router;
 
 /***/ }
 /******/ ]);
