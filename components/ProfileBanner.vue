@@ -1,14 +1,11 @@
 <template>
 	<div >
-		
 		<v-card v-bind:img="image" height="500px" class="parent">
 			<v-row>
 				<img :src="facial" class="img-circle center text-lg-center" /> 
 				 <v-icon large class="teal--text text--darken-2">email</v-icon>
 			</v-row>
 		</v-card>
-		
-
 	</div>	
 </template>
 
@@ -28,12 +25,7 @@ export default {
 
 
 .center {
-	
-    margin: auto;
-    vertical-align: middle;
-    border: 3px solid black;
-    padding: 10px;
-    background-color: green;
+	margin: 0 auto;
 }
 
 .img-circle {

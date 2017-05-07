@@ -1,9 +1,9 @@
-import aritclesModel from './models'
+import articleModel from './models'
 
 export const articles = {
 	async get(req, res) {
 		try {
-			const articles = await aritclesModel.find({})
+			const articles = await articleModel.find({})
 			res.json(articles)
 		} catch(error) {
 			console.log(error)
@@ -20,7 +20,7 @@ export const articles = {
 				url,
 				mixed
 		  } = req.body
-			let newArticle = new aritclesModel({
+			let newArticle = new articleModel({
 				author,
 				pub_date,
 				publication,
@@ -45,7 +45,7 @@ export const articleId = {
 		try {
 			let { _id } = req.params
 			console.log(req.params)
-			let article = await aritclesModel.find({ _id })
+			let article = await articleModel.find({ _id })
 			res.json(article)
 		} catch(error) {
 			console.log(error)
@@ -65,7 +65,7 @@ export const articleId = {
 		  } = req.body
 		  // let payload = Object.keys(req.body).reduce((acc, item) => {	
 		  // }, {})
-			let article = await articlesModel.findOneAndUpdate({ _id }, {
+			let article = await articleModel.findOneAndUpdate({ _id }, {
 				author,
 				pub_date,
 				publication,
@@ -82,7 +82,7 @@ export const articleId = {
 	async delete(req, res) {
 		try {
 			let { _id } = req.params
-			let article = await articlesModel.findByIdAndRemove({ _id })
+			let article = await articleModel.findByIdAndRemove({ _id })
 			res.json({ article, message: 'Successfully deleted.' })
 		} catch (error) {
 			console.log(error)

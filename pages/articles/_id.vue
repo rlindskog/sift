@@ -21,6 +21,7 @@
 			The name says it all. AI4All will support educational programs designed to expose underrepresented high school students to artificial intelligence. I sat down with Gates and Li last week at Stanford University to talk about how to make AI research more appealing to women, why hoodies shouldn’t be tech’s status symbol, and what it takes to work in AI.
 			</p>
 		</div>
+	</div>
 </template>
 
 <script>

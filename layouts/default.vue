@@ -16,6 +16,6 @@ export default {
 
 <style>
 #content {
-	margin-top: 70px;
+	margin-top: 100px;
 }
 </style>

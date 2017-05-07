@@ -26,7 +26,7 @@ module.exports = {
 
 		API_HOST: '127.0.0.1',
 		API_PORT: 3000,
-		API_URL: 'http://127.0.0.1:3000/api'
+		API_URL: 'http://127.0.0.1:3000'
   },
   vue: {
   	middleware: 'vuetify'
