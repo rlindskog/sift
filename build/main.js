@@ -91,8 +91,8 @@ module.exports = require("mongoose");
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mongoose__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mongoose___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_mongoose__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_bcrypt__ = __webpack_require__(5);
@@ -128,9 +128,9 @@ var usersModel = __WEBPACK_IMPORTED_MODULE_1_mongoose___default.a.model('User', 
 
 // hash the password if it is ever saved to the DB.
 usersSchema.pre('save', function () {
-	var _ref = _asyncToGenerator(__WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default.a.mark(function _callee(callback) {
+	var _ref = _asyncToGenerator(__WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator___default.a.mark(function _callee(callback) {
 		var hash;
-		return __WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+		return __WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
 			while (1) {
 				switch (_context.prev = _context.next) {
 					case 0:
@@ -276,8 +276,8 @@ module.exports = require("nuxt");
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_jsonwebtoken__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_jsonwebtoken___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_jsonwebtoken__);
@@ -297,10 +297,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 var users = {
 	get: function () {
-		var _ref = _asyncToGenerator(__WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default.a.mark(function _callee(req, res) {
+		var _ref = _asyncToGenerator(__WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator___default.a.mark(function _callee(req, res) {
 			var _users;
 
-			return __WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+			return __WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
 				while (1) {
 					switch (_context.prev = _context.next) {
 						case 0:
@@ -337,9 +337,9 @@ var users = {
 		return get;
 	}(),
 	post: function () {
-		var _ref2 = _asyncToGenerator(__WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default.a.mark(function _callee2(req, res) {
+		var _ref2 = _asyncToGenerator(__WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator___default.a.mark(function _callee2(req, res) {
 			var hash, newUser, user;
-			return __WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+			return __WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
 				while (1) {
 					switch (_context2.prev = _context2.next) {
 						case 0:
@@ -388,10 +388,10 @@ var users = {
 
 var username = {
 	get: function () {
-		var _ref3 = _asyncToGenerator(__WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default.a.mark(function _callee3(req, res) {
+		var _ref3 = _asyncToGenerator(__WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator___default.a.mark(function _callee3(req, res) {
 			var _username, user;
 
-			return __WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
+			return __WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
 				while (1) {
 					switch (_context3.prev = _context3.next) {
 						case 0:
@@ -429,10 +429,10 @@ var username = {
 		return get;
 	}(),
 	post: function () {
-		var _ref4 = _asyncToGenerator(__WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default.a.mark(function _callee4(req, res) {
+		var _ref4 = _asyncToGenerator(__WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator___default.a.mark(function _callee4(req, res) {
 			var _req$body, _username2, _email, user;
 
-			return __WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
+			return __WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
 				while (1) {
 					switch (_context4.prev = _context4.next) {
 						case 0:
@@ -470,10 +470,10 @@ var username = {
 		return post;
 	}(),
 	put: function () {
-		var _ref5 = _asyncToGenerator(__WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default.a.mark(function _callee5(req, res) {
+		var _ref5 = _asyncToGenerator(__WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator___default.a.mark(function _callee5(req, res) {
 			var _req$body2, _username3, _email2, user;
 
-			return __WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee5$(_context5) {
+			return __WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee5$(_context5) {
 				while (1) {
 					switch (_context5.prev = _context5.next) {
 						case 0:
@@ -511,8 +511,8 @@ var username = {
 		return put;
 	}(),
 	delete: function () {
-		var _ref6 = _asyncToGenerator(__WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default.a.mark(function _callee6(req, res) {
-			return __WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee6$(_context6) {
+		var _ref6 = _asyncToGenerator(__WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator___default.a.mark(function _callee6(req, res) {
+			return __WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee6$(_context6) {
 				while (1) {
 					switch (_context6.prev = _context6.next) {
 						case 0:
@@ -533,10 +533,10 @@ var username = {
 
 var signIn = {
 	post: function () {
-		var _ref7 = _asyncToGenerator(__WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default.a.mark(function _callee7(req, res) {
+		var _ref7 = _asyncToGenerator(__WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator___default.a.mark(function _callee7(req, res) {
 			var _req$body3, _username4, _password, user, hashedPassword, matched, token;
 
-			return __WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee7$(_context7) {
+			return __WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee7$(_context7) {
 				while (1) {
 					switch (_context7.prev = _context7.next) {
 						case 0:
