@@ -37,17 +37,48 @@ export const articles = {
 	}
 }
 
-// export const articlesId = {
-// 	async get(req, res) {
+export const articleId = {
+	async get(req, res) {
+		try {
+			let { _id } = req.body
+			let article = await aritclesModel.find({ _id })
+			res.json(article)
+		} catch(error) {
+			console.log(error)
+			res.status(500).json('Internal Server Error.')
+		}
+	},
+	async post(req, res) {
+		try {
+			let {
+				author,
+				pub_date,
+				publication,
+				title,
+				url,
+				mixed,
+				_id
+		  } = req.body
+		  // let payload = Object.keys(req.body).reduce((acc, item) => {	
+		  // }, {})
+			let article = await articlesModel.findOneAndUpdate({ _id }, {
+				author,
+				pub_date,
+				publication,
+				title,
+				url,
+				mixed
+			})
+			res.status(200).json(article)
+		} catch (error) {
+			console.log(error)
+			res.status(500).json({ error: 'Error 500. Internal server error' })
+		}
+	},
+	async delete(req, res) {
 
-// 	},
-// 	async post(req, res) {
-
-// 	},
-// 	async delete(req, res) {
-
-// 	}
-// }
+	}
+}
 
 
 // {

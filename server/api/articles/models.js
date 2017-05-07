@@ -5,20 +5,21 @@ const articlesSchema = new mongoose.Schema({
 		type: [String],
 		require: true
 	},
-	pub_date: {
-		type: String,
-	},
 	title: {
 		type: String,
-		require: true
+		require: true,
+	},
+	publication: {
+		type: String,
+		required: true
 	},
 	url: {
 		type: String,
-		require: true
+		require: true,
+		unique: true,
 	},
-	claimed: {
-		type: Boolean,
-		default: false
+	pub_date: {
+		type: String,
 	},
 	misc: {
 		type: mongoose.Schema.Types.Mixed
