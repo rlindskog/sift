@@ -7,7 +7,7 @@ export const articles = {
 			res.json(articles)
 		} catch(error) {
 			console.log(error)
-			res.status(500).json({ error: 'Internal server error.' })
+			res.status(500).json({ message: 'Internal server error.' })
 		}
 	},
 	async post(req, res) {
@@ -32,7 +32,10 @@ export const articles = {
 			res.json(article)
 		} catch(error) {
 			console.log(error)
-			res.status(500).json({ error: 'Internal server error.' })
+			if (error.code === 11000) {
+				res.status(202).json({ message: 'Already exists' })
+			}
+			res.status(500).json({ message: 'Internal server error.' })
 		}
 	}
 }
@@ -40,12 +43,13 @@ export const articles = {
 export const articleId = {
 	async get(req, res) {
 		try {
-			let { _id } = req.body
+			let { _id } = req.params
+			console.log(req.params)
 			let article = await aritclesModel.find({ _id })
 			res.json(article)
 		} catch(error) {
 			console.log(error)
-			res.status(500).json('Internal Server Error.')
+			res.status(500).json({ error: 'Internal Server Error.' })
 		}
 	},
 	async post(req, res) {
@@ -76,6 +80,15 @@ export const articleId = {
 		}
 	},
 	async delete(req, res) {
+		try {
+			let { _id } = req.params
+			let article = await articlesModel.findByIdAndRemove({ _id })
+			res.json({ article, message: 'Successfully deleted.' })
+		} catch (error) {
+			console.log(error)
+			res.status(500).json({ error: 'Internal Server Error.' })
+		}
+		
 
 	}
 }

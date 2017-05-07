@@ -19,6 +19,7 @@ export const users = {
 			let hash = await bcrypt.hash(password, 10)
 			let newUser = new usersModel({ username, email, password: hash })
 			let user = await newUser.save()
+			user.href = `${process.env.API_URL}/users/${user.username}`
 			res.json(user)
 		} catch (error) {
 			console.log(error)

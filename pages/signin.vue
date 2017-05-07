@@ -1,7 +1,7 @@
 <template>
 	<div id="index">
-		<p>SignIn {{ message }}</p>
-		<div v-if="$store.state.isAuthenticated">
+		<p>Sign in</p>
+		<div v-if="!$store.state.isAuthenticated">
 			<sign-in-form />
 		</div>
 		<div v-else>
