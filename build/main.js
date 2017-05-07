@@ -274,10 +274,10 @@ module.exports = require("nuxt");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_jsonwebtoken___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_jsonwebtoken__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_bcrypt__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_bcrypt___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_bcrypt__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_filtersensative__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_filtersensative__ = __webpack_require__(12);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return users; });
-/* harmony export (binding) */ __webpack_require__.d(exports, "b", function() { return username; });
-/* harmony export (binding) */ __webpack_require__.d(exports, "c", function() { return signIn; });
+/* harmony export (binding) */ __webpack_require__.d(exports, "c", function() { return username; });
+/* harmony export (binding) */ __webpack_require__.d(exports, "b", function() { return signIn; });
 
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
@@ -525,51 +525,64 @@ var username = {
 var signIn = {
 	post: function () {
 		var _ref7 = _asyncToGenerator(__WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default.a.mark(function _callee7(req, res) {
-			var _req$body3, username, password;
+			var _req$body3, _username4, _password, user, hashedPassword, matched, token;
 
 			return __WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee7$(_context7) {
 				while (1) {
 					switch (_context7.prev = _context7.next) {
 						case 0:
-							_req$body3 = req.body, username = _req$body3.username, password = _req$body3.password;
+							_context7.prev = 0;
+							_req$body3 = req.body, _username4 = _req$body3.username, _password = _req$body3.password;
+							_context7.next = 4;
+							return __WEBPACK_IMPORTED_MODULE_1__models__["a" /* default */].findOne({ username: _username4 });
 
-							User.findOne({ username: username }).then(function (user) {
-								// console.log(user)
-								var hashedPassword = user.password;
-								__WEBPACK_IMPORTED_MODULE_3_bcrypt___default.a.compare(password, hashedPassword).then(function (matched) {
-									if (!user) {
-										res.status(404).json({
-											message: 'Authentication failed, can\'t find user'
-										});
-									} else if (!matched) {
-										res.status(404).json({
-											message: 'Authntication failed. Wrong password'
-										});
-									} else {
-										user = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__util_filtersensative__["a" /* filterSensative */])(user);
-										var token = __WEBPACK_IMPORTED_MODULE_2_jsonwebtoken___default.a.sign(user, process.env.SECRET, {
-											expiresIn: 60 * 60 * 24 * 30 // 30 days 
-										});
-										res.status(200).json({
-											message: 'Enjoy your token!',
-											token: token,
-											user: user
-										});
-									}
-								}).catch(function (error) {
-									console.log(error);
-									res.status(500).json({
-										error: error
-									});
+						case 4:
+							user = _context7.sent;
+							hashedPassword = user.password;
+							_context7.next = 8;
+							return __WEBPACK_IMPORTED_MODULE_3_bcrypt___default.a.compare(_password, hashedPassword);
+
+						case 8:
+							matched = _context7.sent;
+
+							if (!user) {
+								res.status(404).json({
+									message: 'Authentication failed, can\'t find user'
 								});
+							} else if (!matched) {
+								res.status(404).json({
+									message: 'Authntication failed. Wrong password'
+								});
+							} else {
+								user = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__util_filtersensative__["a" /* filterSensative */])(user);
+								token = __WEBPACK_IMPORTED_MODULE_2_jsonwebtoken___default.a.sign(user, process.env.SECRET, {
+									expiresIn: 60 * 60 * 24 * 30 // 30 days 
+								});
+
+								res.status(200).json({
+									message: 'Enjoy your token!',
+									token: token,
+									user: user
+								});
+							}
+							_context7.next = 16;
+							break;
+
+						case 12:
+							_context7.prev = 12;
+							_context7.t0 = _context7['catch'](0);
+
+							console.log(_context7.t0);
+							res.status(500).json({
+								error: 'Internal Server Error.'
 							});
 
-						case 2:
+						case 16:
 						case 'end':
 							return _context7.stop();
 					}
 				}
-			}, _callee7, this);
+			}, _callee7, this, [[0, 12]]);
 		}));
 
 		function post(_x13, _x14) {
@@ -604,17 +617,33 @@ var router = __WEBPACK_IMPORTED_MODULE_0_express___default.a.Router();
 router.get('/', __WEBPACK_IMPORTED_MODULE_2__controllers__["a" /* users */].get);
 router.post('/', __WEBPACK_IMPORTED_MODULE_2__controllers__["a" /* users */].post);
 
-router.get('/:user', __WEBPACK_IMPORTED_MODULE_2__controllers__["b" /* username */].get);
-router.post('/:user', __WEBPACK_IMPORTED_MODULE_2__controllers__["b" /* username */].post);
-router.put('/:user', __WEBPACK_IMPORTED_MODULE_2__controllers__["b" /* username */].put);
-router.delete('/:user', __WEBPACK_IMPORTED_MODULE_2__controllers__["b" /* username */].delete);
+router.post('/signin', __WEBPACK_IMPORTED_MODULE_2__controllers__["b" /* signIn */].post);
+// router.get('/signin', signIn.post)
 
-router.post('/signin', __WEBPACK_IMPORTED_MODULE_2__controllers__["c" /* signIn */].post);
+router.get('/:user', __WEBPACK_IMPORTED_MODULE_2__controllers__["c" /* username */].get);
+router.post('/:user', __WEBPACK_IMPORTED_MODULE_2__controllers__["c" /* username */].post);
+router.put('/:user', __WEBPACK_IMPORTED_MODULE_2__controllers__["c" /* username */].put);
+router.delete('/:user', __WEBPACK_IMPORTED_MODULE_2__controllers__["c" /* username */].delete);
 
 /* harmony default export */ exports["a"] = router;
 
 /***/ },
-/* 12 */,
+/* 12 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ exports["a"] = filterSensative;
+function filterSensative(user) {
+	var newUser = Object.keys(user.toObject()).reduce(function (acc, item) {
+		if (item !== 'password' && item !== 'createdAt' && item !== 'updatedAt') {
+			acc[item] = user[item];
+		}
+		return acc;
+	}, {});
+	return newUser;
+}
+
+/***/ },
 /* 13 */
 /***/ function(module, exports) {
 
@@ -682,22 +711,6 @@ app.listen(process.env.API_PORT, process.env.API_HOST, function (err) {
   if (err) throw err;
   console.log('\uD83C\uDF0E API listening at http://' + process.env.API_HOST + ':' + process.env.API_PORT);
 });
-
-/***/ },
-/* 16 */
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ exports["a"] = filterSensative;
-function filterSensative(user) {
-	var newUser = Object.keys(user.toObject()).reduce(function (acc, item) {
-		if (item !== 'password' && item !== 'createdAt' && item !== 'updatedAt') {
-			acc[item] = user[item];
-		}
-		return acc;
-	}, {});
-	return newUser;
-}
 
 /***/ }
 /******/ ]);
