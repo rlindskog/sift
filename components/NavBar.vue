@@ -2,8 +2,10 @@
 	<div id="nav-bar">
 		<nav id="nav">
 			<ul v-if="$store.state.isAuthenticated">
+				<nuxt-link class="nav-item" :to="'/users/' + $store.state.user.username">Profile</nuxt-link>
 				<nuxt-link class="nav-item" to="/" exact>Home</nuxt-link>
 				<nuxt-link class="nav-item" to="/about">About</nuxt-link>
+				<nuxt-link class="nav-item" to="/signout">Signout</nuxt-link>
 			</ul>
 			<ul v-else>
 				<nuxt-link class="nav-item" to="/register">Register</nuxt-link>
@@ -50,9 +52,6 @@ ul {
 	color: red;
 	transition: color .5s;
 }
-
-
-
 
 	
 </style>
