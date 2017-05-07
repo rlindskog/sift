@@ -244,12 +244,15 @@ module.exports = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_express__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_express___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_express__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__users_routes__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__articles_routes__ = __webpack_require__(16);
+
 
 
 
 var router = __WEBPACK_IMPORTED_MODULE_0_express___default.a.Router();
 
 router.use('/users', __WEBPACK_IMPORTED_MODULE_1__users_routes__["a" /* default */]);
+router.use('/articles', __WEBPACK_IMPORTED_MODULE_2__articles_routes__["a" /* default */]);
 
 router.get('/', function (req, res) {
 	res.json({
@@ -290,6 +293,7 @@ module.exports = require("nuxt");
 
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
 
 
 
@@ -344,38 +348,35 @@ var users = {
 					switch (_context2.prev = _context2.next) {
 						case 0:
 							_context2.prev = 0;
-
-
-							console.log(req.body);
-							_context2.next = 4;
+							_context2.next = 3;
 							return __WEBPACK_IMPORTED_MODULE_3_bcrypt___default.a.hash(password, 10);
 
-						case 4:
+						case 3:
 							hash = _context2.sent;
 							newUser = new __WEBPACK_IMPORTED_MODULE_1__models__["a" /* default */]({ username: username, email: email, password: hash });
-							_context2.next = 8;
+							_context2.next = 7;
 							return newUser.save();
 
-						case 8:
+						case 7:
 							user = _context2.sent;
 
 							res.json(user);
-							_context2.next = 16;
+							_context2.next = 15;
 							break;
 
-						case 12:
-							_context2.prev = 12;
+						case 11:
+							_context2.prev = 11;
 							_context2.t0 = _context2['catch'](0);
 
 							console.log(_context2.t0);
 							res.status(500).json({ error: 'Error 500. Internal server error' });
 
-						case 16:
+						case 15:
 						case 'end':
 							return _context2.stop();
 					}
 				}
-			}, _callee2, this, [[0, 12]]);
+			}, _callee2, this, [[0, 11]]);
 		}));
 
 		function post(_x3, _x4) {
@@ -720,6 +721,26 @@ app.listen(process.env.API_PORT, process.env.API_HOST, function (err) {
   if (err) throw err;
   console.log('\uD83C\uDF0E API listening at http://' + process.env.API_HOST + ':' + process.env.API_PORT);
 });
+
+/***/ },
+/* 16 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_express__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_express___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_express__);
+
+
+var router = __WEBPACK_IMPORTED_MODULE_0_express___default.a.Router();
+
+router.get('/', articles.get);
+router.post('/', articles.post);
+
+router.get('/:articleId', articleId.get);
+router.post('/:articleId', articleId.post);
+router.delete('/:articleId', articleId.delete);
+
+/* harmony default export */ exports["a"] = router;
 
 /***/ }
 /******/ ]);
