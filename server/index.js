@@ -2,13 +2,16 @@ import dotenv from 'dotenv'
 dotenv.config()
 import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
+import cors from 'cors'
 import express from 'express'
 import api from './api/index'
 import mongoose from 'mongoose'
 import Nuxt from 'nuxt'
-
 const app = express()
 
+// app.use(cors({
+// 	origin: process.env.URL
+// }))
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(cookieParser())
