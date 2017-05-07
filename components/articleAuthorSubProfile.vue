@@ -1,7 +1,7 @@
 <template>
 	<div class="inbl">
 		<img :src = "face" class = " mini-face"/>
-		
+		<v-chip outline class="secondary secondary--text">Follow</v-chip>
 		<!-- TODO: add link to their profile on image click -->
 		<div class="name">David J Pfeiffer</div>
 		<div class="person-summary">Student and Software Engineer. I want to use science and technology to make the world a better place</div>
