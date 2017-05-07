@@ -1,7 +1,7 @@
 from abc import ABCMeta, abstractmethod
 import requests
 import json
-
+from sys import argv
 import config
 
 
@@ -111,6 +111,9 @@ articles.
                     usable = False
             if usable:
                 usable_articles.append(story)
+                
+        # html = requests.get(story['web_url'])
+
         article_data = [{
             'publication': story['source'],
             # NY Times renders author as byline.original =
@@ -121,3 +124,14 @@ articles.
             'title': self._headline_to_title(story['headline']),
         } for story in usable_articles]
         return article_data
+
+
+# author = 'Ryan'
+ay = AylienPuller()
+nyt = NYTimesPuller()
+author = argv[1]
+# print ay.populate_author(author)
+
+print nyt.get_articles_for_author(author)
+
+
