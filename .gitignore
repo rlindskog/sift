@@ -63,3 +63,13 @@ build
 
 # api
 db/*
+
+# Python bytecode files
+*.pyc
+*.pyo
+
+# Python venv
+venv
+
+# Credentials
+config.py
