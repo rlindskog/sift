@@ -7,7 +7,7 @@ export const articles = {
 			res.json(articles)
 		} catch(error) {
 			console.log(error)
-			res.status(500).json({ error: 'Internal server error.' })
+			res.status(500).json({ message: 'Internal server error.' })
 		}
 	},
 	async post(req, res) {
@@ -32,7 +32,7 @@ export const articles = {
 			res.json(article)
 		} catch(error) {
 			console.log(error)
-			res.status(500).json({ error: 'Internal server error.' })
+			res.status(500).json({ message: 'Internal server error.' })
 		}
 	}
 }
@@ -45,7 +45,10 @@ export const articleId = {
 			res.json(article)
 		} catch(error) {
 			console.log(error)
-			res.status(500).json('Internal Server Error.')
+			if (error.code === 11000) {
+				res.status(202).json({ message: 'Already exists' })
+			}
+			res.status(500).json({ error: 'Internal Server Error.' })
 		}
 	},
 	async post(req, res) {
