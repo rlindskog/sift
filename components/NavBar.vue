@@ -1,21 +1,4 @@
 <template>
-
-<v-toolbar class="grey">
-  <v-toolbar-side-icon></v-toolbar-side-icon>
-  <v-toolbar-title></v-toolbar-title>
-  <v-toolbar-items class="hidden-md-and-down right" v-if="$store.state.isAuthenticated">
-    <v-toolbar-item router to="/" ripple>Home</v-toolbar-item>
-    <v-toolbar-item router to="/about" ripple>About</v-toolbar-item>
-    <v-toolbar-item router to="/signout" ripple>Signout</v-toolbar-item>
-  </v-toolbar-items>
-  <v-toolbar-items class="hidden-md-and-down right" v-else>
-    <v-toolbar-item router to="/" ripple>Home</v-toolbar-item>
-    <v-toolbar-item router to="/about" ripple>About</v-toolbar-item>
-    <v-toolbar-item router to="/register" ripple>Register</v-toolbar-item>
-    <v-toolbar-item router to="/signin" ripple>Sign In</v-toolbar-item>
-  </v-toolbar-items>
-</v-toolbar>
-
 		<v-toolbar class='sticky'>
 		  	<!-- <v-toolbar-logo>Logo</v-toolbar-logo> -->
 		  	<v-toolbar-items>
