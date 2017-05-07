@@ -126,12 +126,12 @@ articles.
         return article_data
 
 
-# author = 'Ryan'
+# author = 'larry'
 ay = AylienPuller()
-nyt = NYTimesPuller()
+# nyt = NYTimesPuller()
 author = argv[1]
-# print ay.populate_author(author)
+ay.populate_author(author)
 
-print nyt.get_articles_for_author(author)
+# print nyt.get_articles_for_author(author)
 
 
