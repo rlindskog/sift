@@ -4,7 +4,6 @@ import json
 from sys import argv
 import config
 
-
 class APIPuller(object):
     __metaclass__ = ABCMeta
 
@@ -18,10 +17,12 @@ class APIPuller(object):
         vals = self.get_articles_for_author(author_full_name)
         for val in vals:
             self.post_to_articles(val)
+            #print(val)
 
     @abstractmethod
     def get_articles_for_author(self, author_full_name):
         pass
+
 
 
 class AylienPuller(APIPuller):

@@ -65,7 +65,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 23);
+/******/ 	return __webpack_require__(__webpack_require__.s = 21);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -84,7 +84,7 @@ module.exports = require("mongoose");
 /* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(22);
+module.exports = __webpack_require__(20);
 
 
 /***/ },
@@ -95,18 +95,124 @@ module.exports = require("dotenv");
 
 /***/ },
 /* 4 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-module.exports = require("bcrypt");
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mongoose__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mongoose___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_mongoose__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_bcrypt__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_bcrypt___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_bcrypt__);
+
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+
+
+
+var userSchema = new __WEBPACK_IMPORTED_MODULE_1_mongoose___default.a.Schema({
+	username: {
+		type: String,
+		unique: true,
+		require: true
+	},
+	email: {
+		type: String,
+		unique: true,
+		require: true
+	},
+	password: {
+		type: String,
+		unique: true,
+		require: true
+	}
+}, {
+	timestamps: true
+});
+
+var userModel = __WEBPACK_IMPORTED_MODULE_1_mongoose___default.a.model('User', userSchema);
+
+// hash the password if it is ever saved to the DB.
+userSchema.pre('save', function () {
+	var _ref = _asyncToGenerator(__WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator___default.a.mark(function _callee(callback) {
+		var hash;
+		return __WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+			while (1) {
+				switch (_context.prev = _context.next) {
+					case 0:
+						if (this.isModified('password')) {
+							_context.next = 2;
+							break;
+						}
+
+						return _context.abrupt('return', callback());
+
+					case 2:
+						_context.next = 4;
+						return __WEBPACK_IMPORTED_MODULE_2_bcrypt___default.a.hash(this.password, 10);
+
+					case 4:
+						hash = _context.sent;
+
+						this.password = hash;
+						callback();
+
+					case 7:
+					case 'end':
+						return _context.stop();
+				}
+			}
+		}, _callee, this);
+	}));
+
+	return function (_x) {
+		return _ref.apply(this, arguments);
+	};
+}());
+
+/* harmony default export */ exports["a"] = userModel;
+
+// module.exports = {
+// 	users: [
+// 		{
+// 			username: 'rlindskog',
+// 			email: 'r.lindskog17@gmail.com',
+// 			admin: true,
+// 			verified: true,
+// 			href: `${process.env.API_URL}/api/rlindskog`
+// 		},
+// 		{
+// 			username: 'john',
+// 			email: 'john@gmail.com',
+// 			admin: false,
+// 			verified: false,
+// 			href: `${process.env.API_URL}/api/john`
+// 		},
+// 		{
+// 			username: 'jaccob',
+// 			email: 'jaccob@gmail.com',
+// 			admin: false,
+// 			verified: true,
+// 			href: `${process.env.API_URL}/api/jaccob`
+// 		},
+// 	]
+// }
 
 /***/ },
 /* 5 */
 /***/ function(module, exports) {
 
-module.exports = require("jsonwebtoken");
+module.exports = require("bcrypt");
 
 /***/ },
 /* 6 */
+/***/ function(module, exports) {
+
+module.exports = require("jsonwebtoken");
+
+/***/ },
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 __webpack_require__(3).config();
@@ -137,15 +243,15 @@ module.exports = {
 };
 
 /***/ },
-/* 7 */
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_express__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_express___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_express__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__users_routes__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__users_routes__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__articles_routes__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__admin_routes__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__admin_routes__ = __webpack_require__(22);
 
 
 
@@ -166,67 +272,36 @@ router.get('/', function (req, res) {
 /* harmony default export */ exports["a"] = router;
 
 /***/ },
-/* 8 */
+/* 9 */
 /***/ function(module, exports) {
 
 module.exports = require("body-parser");
 
 /***/ },
-/* 9 */
+/* 10 */
 /***/ function(module, exports) {
 
 module.exports = require("cookie-parser");
 
 /***/ },
-/* 10 */
+/* 11 */
 /***/ function(module, exports) {
 
 module.exports = require("cors");
 
 /***/ },
-/* 11 */
+/* 12 */
 /***/ function(module, exports) {
 
 module.exports = require("nuxt");
-
-/***/ },
-/* 12 */
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_express__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_express___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_express__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_child_process__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_child_process___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_child_process__);
-
-
-
-var router = __WEBPACK_IMPORTED_MODULE_0_express___default.a.Router();
-
-router.post('/author', function (req, res) {
-	var author = req.body.author;
-
-	console.log(req.body);
-	var process = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_child_process__["spawn"])('python', ['./puller/APIPullers.py', author]);
-	var dataString = '';
-	process.stdout.on('data', function (data) {
-		dataString += data.toString();
-	});
-	process.stdout.on('end', function (data) {
-		console.log(dataString);
-		res.json(dataString);
-	});
-});
-
-/* harmony default export */ exports["a"] = router;
 
 /***/ },
 /* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models__ = __webpack_require__(14);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return articles; });
 /* harmony export (binding) */ __webpack_require__.d(exports, "b", function() { return articleId; });
@@ -238,10 +313,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 var articles = {
 	get: function () {
-		var _ref = _asyncToGenerator(__WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default.a.mark(function _callee(req, res) {
+		var _ref = _asyncToGenerator(__WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator___default.a.mark(function _callee(req, res) {
 			var _articles;
 
-			return __WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+			return __WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
 				while (1) {
 					switch (_context.prev = _context.next) {
 						case 0:
@@ -278,10 +353,10 @@ var articles = {
 		return get;
 	}(),
 	post: function () {
-		var _ref2 = _asyncToGenerator(__WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default.a.mark(function _callee2(req, res) {
+		var _ref2 = _asyncToGenerator(__WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator___default.a.mark(function _callee2(req, res) {
 			var _req$body, author, pub_date, publication, title, url, mixed, newArticle, article;
 
-			return __WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+			return __WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
 				while (1) {
 					switch (_context2.prev = _context2.next) {
 						case 0:
@@ -333,10 +408,10 @@ var articles = {
 
 var articleId = {
 	get: function () {
-		var _ref3 = _asyncToGenerator(__WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default.a.mark(function _callee3(req, res) {
+		var _ref3 = _asyncToGenerator(__WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator___default.a.mark(function _callee3(req, res) {
 			var _id, article;
 
-			return __WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
+			return __WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
 				while (1) {
 					switch (_context3.prev = _context3.next) {
 						case 0:
@@ -376,10 +451,10 @@ var articleId = {
 		return get;
 	}(),
 	post: function () {
-		var _ref4 = _asyncToGenerator(__WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default.a.mark(function _callee4(req, res) {
+		var _ref4 = _asyncToGenerator(__WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator___default.a.mark(function _callee4(req, res) {
 			var _req$body2, author, pub_date, publication, title, url, mixed, _id, article;
 
-			return __WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
+			return __WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
 				while (1) {
 					switch (_context4.prev = _context4.next) {
 						case 0:
@@ -427,10 +502,10 @@ var articleId = {
 		return post;
 	}(),
 	delete: function () {
-		var _ref5 = _asyncToGenerator(__WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default.a.mark(function _callee5(req, res) {
+		var _ref5 = _asyncToGenerator(__WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator___default.a.mark(function _callee5(req, res) {
 			var _id, article;
 
-			return __WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee5$(_context5) {
+			return __WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee5$(_context5) {
 				while (1) {
 					switch (_context5.prev = _context5.next) {
 						case 0:
@@ -564,14 +639,14 @@ router.delete('/:_id', __WEBPACK_IMPORTED_MODULE_1__controllers__["b" /* article
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_jsonwebtoken__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_jsonwebtoken__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_jsonwebtoken___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_jsonwebtoken__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_bcrypt__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_bcrypt__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_bcrypt___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_bcrypt__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_filtersensative__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_filtersensative__ = __webpack_require__(19);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return users; });
 /* harmony export (binding) */ __webpack_require__.d(exports, "c", function() { return username; });
 /* harmony export (binding) */ __webpack_require__.d(exports, "b", function() { return signIn; });
@@ -587,10 +662,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 var users = {
 	get: function () {
-		var _ref = _asyncToGenerator(__WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default.a.mark(function _callee(req, res) {
+		var _ref = _asyncToGenerator(__WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator___default.a.mark(function _callee(req, res) {
 			var _users;
 
-			return __WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+			return __WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
 				while (1) {
 					switch (_context.prev = _context.next) {
 						case 0:
@@ -627,10 +702,10 @@ var users = {
 		return get;
 	}(),
 	post: function () {
-		var _ref2 = _asyncToGenerator(__WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default.a.mark(function _callee2(req, res) {
+		var _ref2 = _asyncToGenerator(__WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator___default.a.mark(function _callee2(req, res) {
 			var _req$body, _username, email, password, hash, newUser, user;
 
-			return __WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+			return __WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
 				while (1) {
 					switch (_context2.prev = _context2.next) {
 						case 0:
@@ -677,10 +752,10 @@ var users = {
 
 var username = {
 	get: function () {
-		var _ref3 = _asyncToGenerator(__WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default.a.mark(function _callee3(req, res) {
+		var _ref3 = _asyncToGenerator(__WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator___default.a.mark(function _callee3(req, res) {
 			var _username2, user;
 
-			return __WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
+			return __WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
 				while (1) {
 					switch (_context3.prev = _context3.next) {
 						case 0:
@@ -720,10 +795,10 @@ var username = {
 		return get;
 	}(),
 	post: function () {
-		var _ref4 = _asyncToGenerator(__WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default.a.mark(function _callee4(req, res) {
+		var _ref4 = _asyncToGenerator(__WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator___default.a.mark(function _callee4(req, res) {
 			var _req$body2, _username3, email, user;
 
-			return __WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
+			return __WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
 				while (1) {
 					switch (_context4.prev = _context4.next) {
 						case 0:
@@ -761,10 +836,10 @@ var username = {
 		return post;
 	}(),
 	put: function () {
-		var _ref5 = _asyncToGenerator(__WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default.a.mark(function _callee5(req, res) {
+		var _ref5 = _asyncToGenerator(__WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator___default.a.mark(function _callee5(req, res) {
 			var _req$body3, _username4, email, user;
 
-			return __WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee5$(_context5) {
+			return __WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee5$(_context5) {
 				while (1) {
 					switch (_context5.prev = _context5.next) {
 						case 0:
@@ -802,8 +877,8 @@ var username = {
 		return put;
 	}(),
 	delete: function () {
-		var _ref6 = _asyncToGenerator(__WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default.a.mark(function _callee6(req, res) {
-			return __WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee6$(_context6) {
+		var _ref6 = _asyncToGenerator(__WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator___default.a.mark(function _callee6(req, res) {
+			return __WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee6$(_context6) {
 				while (1) {
 					switch (_context6.prev = _context6.next) {
 						case 0:
@@ -824,10 +899,10 @@ var username = {
 
 var signIn = {
 	post: function () {
-		var _ref7 = _asyncToGenerator(__WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default.a.mark(function _callee7(req, res) {
+		var _ref7 = _asyncToGenerator(__WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator___default.a.mark(function _callee7(req, res) {
 			var _req$body4, _username5, password, user, hashedPassword, matched, token;
 
-			return __WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee7$(_context7) {
+			return __WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee7$(_context7) {
 				while (1) {
 					switch (_context7.prev = _context7.next) {
 						case 0:
@@ -895,8 +970,8 @@ var signIn = {
 
 var singOut = {
 	post: function () {
-		var _ref8 = _asyncToGenerator(__WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default.a.mark(function _callee8(req, res) {
-			return __WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee8$(_context8) {
+		var _ref8 = _asyncToGenerator(__WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator___default.a.mark(function _callee8(req, res) {
+			return __WEBPACK_IMPORTED_MODULE_0__Users_Puroof_Github_sift_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee8$(_context8) {
 				while (1) {
 					switch (_context8.prev = _context8.next) {
 						case 0:
@@ -920,116 +995,10 @@ var singOut = {
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mongoose__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mongoose___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_mongoose__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_bcrypt__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_bcrypt___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_bcrypt__);
-
-
-function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
-
-
-
-
-var userSchema = new __WEBPACK_IMPORTED_MODULE_1_mongoose___default.a.Schema({
-	username: {
-		type: String,
-		unique: true,
-		require: true
-	},
-	email: {
-		type: String,
-		unique: true,
-		require: true
-	},
-	password: {
-		type: String,
-		unique: true,
-		require: true
-	}
-}, {
-	timestamps: true
-});
-
-var userModel = __WEBPACK_IMPORTED_MODULE_1_mongoose___default.a.model('User', userSchema);
-
-// hash the password if it is ever saved to the DB.
-userSchema.pre('save', function () {
-	var _ref = _asyncToGenerator(__WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default.a.mark(function _callee(callback) {
-		var hash;
-		return __WEBPACK_IMPORTED_MODULE_0__Users_rlindskog_Programming_nuxt_sift_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
-			while (1) {
-				switch (_context.prev = _context.next) {
-					case 0:
-						if (this.isModified('password')) {
-							_context.next = 2;
-							break;
-						}
-
-						return _context.abrupt('return', callback());
-
-					case 2:
-						_context.next = 4;
-						return __WEBPACK_IMPORTED_MODULE_2_bcrypt___default.a.hash(this.password, 10);
-
-					case 4:
-						hash = _context.sent;
-
-						this.password = hash;
-						callback();
-
-					case 7:
-					case 'end':
-						return _context.stop();
-				}
-			}
-		}, _callee, this);
-	}));
-
-	return function (_x) {
-		return _ref.apply(this, arguments);
-	};
-}());
-
-/* harmony default export */ exports["a"] = userModel;
-
-// module.exports = {
-// 	users: [
-// 		{
-// 			username: 'rlindskog',
-// 			email: 'r.lindskog17@gmail.com',
-// 			admin: true,
-// 			verified: true,
-// 			href: `${process.env.API_URL}/api/rlindskog`
-// 		},
-// 		{
-// 			username: 'john',
-// 			email: 'john@gmail.com',
-// 			admin: false,
-// 			verified: false,
-// 			href: `${process.env.API_URL}/api/john`
-// 		},
-// 		{
-// 			username: 'jaccob',
-// 			email: 'jaccob@gmail.com',
-// 			admin: false,
-// 			verified: true,
-// 			href: `${process.env.API_URL}/api/jaccob`
-// 		},
-// 	]
-// }
-
-/***/ },
-/* 18 */
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_express__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_express___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_express__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__controllers__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__middleware_authenticate__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__middleware_authenticate__ = __webpack_require__(18);
 
 
 
@@ -1049,11 +1018,11 @@ router.delete('/:username', __WEBPACK_IMPORTED_MODULE_2__middleware_authenticate
 /* harmony default export */ exports["a"] = router;
 
 /***/ },
-/* 19 */
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-var jwt = __webpack_require__(5);
+var jwt = __webpack_require__(6);
 
 var authenticate = function authenticate(req, res, next) {
 	var token = req.body.token || req.query.token || req.headers['x-access-token'] || req.cookies.token;
@@ -1078,7 +1047,7 @@ var authenticate = function authenticate(req, res, next) {
 /* harmony default export */ exports["a"] = authenticate;
 
 /***/ },
-/* 20 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1094,37 +1063,31 @@ function filterSensative(user) {
 }
 
 /***/ },
-/* 21 */
-/***/ function(module, exports) {
-
-module.exports = require("child_process");
-
-/***/ },
-/* 22 */
+/* 20 */
 /***/ function(module, exports) {
 
 module.exports = require("regenerator-runtime");
 
 /***/ },
-/* 23 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_dotenv__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_dotenv___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_dotenv__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_body_parser__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_body_parser__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_body_parser___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_body_parser__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_cookie_parser__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_cookie_parser__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_cookie_parser___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_cookie_parser__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_cors__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_cors__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_cors___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_cors__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_express__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_express___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_express__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__api_index__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__api_index__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_mongoose__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_mongoose___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_mongoose__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_nuxt__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_nuxt__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_nuxt___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_nuxt__);
 
 __WEBPACK_IMPORTED_MODULE_0_dotenv___default.a.config();
@@ -1151,7 +1114,7 @@ __WEBPACK_IMPORTED_MODULE_6_mongoose___default.a.Promise = global.Promise;
 __WEBPACK_IMPORTED_MODULE_6_mongoose___default.a.connect(process.env.DB_URL);
 
 // Import and Set Nuxt.js options
-var config = __webpack_require__(6);
+var config = __webpack_require__(7);
 config.dev = !("development" === 'production');
 
 // Init Nuxt.js
@@ -1170,6 +1133,43 @@ app.listen(process.env.API_PORT, process.env.API_HOST, function (err) {
   if (err) throw err;
   console.log('\uD83C\uDF0E API listening at http://' + process.env.API_HOST + ':' + process.env.API_PORT);
 });
+
+/***/ },
+/* 22 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_express__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_express___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_express__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_child_process__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_child_process___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_child_process__);
+
+
+
+var router = __WEBPACK_IMPORTED_MODULE_0_express___default.a.Router();
+
+router.post('/author', function (req, res) {
+	var author = req.body.author;
+
+	console.log(req.body);
+	var process = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_child_process__["spawn"])('python', ['./puller/APIPullers.py', author]);
+	var dataString = '';
+	process.stdout.on('data', function (data) {
+		dataString += data.toString();
+	});
+	process.stdout.on('end', function (data) {
+		console.log(dataString);
+		res.json(dataString);
+	});
+});
+
+/* harmony default export */ exports["a"] = router;
+
+/***/ },
+/* 23 */
+/***/ function(module, exports) {
+
+module.exports = require("child_process");
 
 /***/ }
 /******/ ]);
