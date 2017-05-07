@@ -43,6 +43,7 @@ export default {
 	.mini-face {
 		max-width: 60px;
 		max-height: 60px;
+		margin-top:50px;
 	}
 
 </style>
