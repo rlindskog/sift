@@ -1,3 +1,4 @@
+from abc import ABCMeta, abstractmethod
 import requests
 import json
 
@@ -5,7 +6,22 @@ import config
 
 
 class APIPuller(object):
-    pass
+    __metaclass__ = ABCMeta
+
+    def post_to_articles(self, article_data):
+        requests.post(
+            config.hostname + config.article_path,
+            data=article_data,
+        )
+
+    def populate_author(self, author_full_name):
+        vals = self.get_articles_for_author(author_full_name)
+        for val in vals:
+            self.post_to_articles(val)
+
+    @abstractmethod
+    def get_articles_for_author(self, author_full_name):
+        pass
 
 
 class AylienPuller(APIPuller):
