@@ -1,32 +1,45 @@
 import Vuex from 'vuex'
 import axios from '~/plugins/axios'
+import Cookies from 'js-cookie'
 
 const store = new Vuex.Store({
   state: {
     isAuthenticated: false,
-    user: {},
+    token: '',
+    user: {}
   },
   mutations: {
-    signIn(state, user) {
-    	console.log(user)
-    	state.user.username = user.username
-    	state.user.email = user.username
-    	state.token = user.token
+    signIn(state, res) {
+      let user = res.data.user
+      let token = res.data.token
+    	state.user = user
+      state.token = token
+      state.isAuthenticated = true
+    	// state.email = user.email
+      if (process.env.VUE_ENV === 'client') {
+        Cookies.set('token', token)
+      }
       state.message = ''
     }
   },
   actions: {
-  	signin() {
-
+  	async signIn({ commit, state}, { username, password }) {
+      try {
+        let res = await axios.post('/api/users/signin', { username, password })
+        console.log(res)
+        commit('signIn', res)
+      } catch (error) {
+        state.message = 'Something went wrong.'
+      }
   	},
-  	signout() {
+  	signOut() {
 
   	},
   	async register({ commit, state}, { username, email, password }) {
       try {
         let res = await axios.post('/api/users', { username, email, password })
         console.log(res)
-        commit('signIn', res)
+        // go signin...
       } catch (error) {
         state.message = 'Something went wrong.'
       }

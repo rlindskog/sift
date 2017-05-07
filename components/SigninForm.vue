@@ -1,6 +1,6 @@
 <template>
 	<div id="sign-in-form">
-		<form>
+		<form @submit.prevent="signIn">
 			<input
 				type="text"
 				name="username"
@@ -16,6 +16,8 @@
 				name="Submit"
 				value="Submit">
 		</form>
+		<h1 v-if="$store.isAuthenticated">Signed in</h1>
+		<h1 v-else>Not signed in</h1>
 	</div>
 </template>
 
@@ -25,6 +27,15 @@ export default {
 		return {
 			username: '',
 			password: '',
+		}
+	},
+	methods: {
+		signIn() {
+			let payload = {
+				username: this.username,
+				password: this.password
+			}
+			this.$store.dispatch('signIn', payload)
 		}
 	}
 }	
