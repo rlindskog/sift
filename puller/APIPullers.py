@@ -57,9 +57,13 @@ rendering it as headline.main : headline.kicker
         """
         main = headline_dict['main']
         kicker = headline_dict.get('content_kicker')
-        if kicker is None:
-            return main
-        return u'{0} : {1}'.format(main, kicker)
+        content_kicker = headline_dict.get('content_kicker')
+        ending = u""
+        if kicker is not None:
+            ending = u" : {0}".format(kicker)
+        elif content_kicker is not None:
+            ending = u" : {0}".format(content_kicker)
+        return u'{0}{1}'.format(main, ending)
 
     def _byline_to_author(self, byline_dict):
         """Helper for turning byline dict into a single author:
