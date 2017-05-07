@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+import mongoose from "mongoose"
 
 const articlesSchema = new mongoose.Schema({
 	author: {
@@ -19,7 +19,7 @@ const articlesSchema = new mongoose.Schema({
 	claimed: {
 		type: Boolean,
 		default: false
-	}
+	},
 	misc: {
 		type: mongoose.Schema.Types.Mixed
 	}
@@ -31,9 +31,10 @@ const articlesModel = mongoose.model('Article', articlesSchema)
 export default articlesModel
 
 // {
-// 	'author': u'David Remnick',
-//   'pub_date': u'2017-03-19T02:53:06Z',
-//   'publication': u'The New Yorker',
-//   'title': u'Remembering Chuck Berry, Who Died at Ninety',
-//   'url': u'http://www.newyorker.com/culture/culture-desk/remembering-chuck-berry-who-died-at-ninety?mbid=rss'
+// 	"author": "David Remnick",
+//   "pub_date": "2017-03-19T02:53:06Z",
+//   "publication": "The New Yorker",
+//   "title": "Remembering Chuck Berry, Who Died at Ninety",
+//   "url": "http://www.newyorker.com/culture/culture-desk/remembering-chuck-berry-who-died-at-ninety?mbid=rss",
+//   "mixed": "{ \"dog\": \"Sayllu\" }" 
 // }

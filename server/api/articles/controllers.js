@@ -29,7 +29,7 @@ export const articles = {
 				mixed
 			})
 			let article = await newArticle.save()
-			res.json(user)
+			res.json(article)
 		} catch(error) {
 			console.log(error)
 			res.status(500).json({ error: 'Internal server error.' })
@@ -37,7 +37,17 @@ export const articles = {
 	}
 }
 
-export const articlesId
+// export const articlesId = {
+// 	async get(req, res) {
+
+// 	},
+// 	async post(req, res) {
+
+// 	},
+// 	async delete(req, res) {
+
+// 	}
+// }
 
 
 // {

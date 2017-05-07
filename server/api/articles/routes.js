@@ -1,9 +1,9 @@
 import express from 'express'
-// import { articles, articleId } from './controllers'
+import { articles } from './controllers'
 const router = express.Router()
 
-// router.get('/', articles.get)
-// router.post('/', articles.post)
+router.get('/', articles.get)
+router.post('/', articles.post)
 
 // router.get('/:articleId', articleId.get)
 // router.post('/:articleId', articleId.post)
