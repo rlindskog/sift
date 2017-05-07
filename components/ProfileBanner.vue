@@ -1,0 +1,47 @@
+<template>
+	<div >
+		
+		<v-card v-bind:img="image" height="500px" class="parent">
+			<v-row>
+				
+				<img :src="facial" class="img-circle center text-lg-center" /> 
+				
+			</v-row>
+		</v-card>
+		
+
+	</div>	
+</template>
+
+<script>
+export default {
+	props: ['image', 'facial'],
+}	
+</script>
+
+<style scoped>
+.parent {
+  position: relative;
+  top: 0;
+  left: 0;
+  
+}
+
+
+.center {
+	
+    margin: auto;
+    vertical-align: middle;
+    border: 3px solid black;
+    padding: 10px;
+    background-color: green;
+}
+
+.img-circle {
+    border-radius: 50%;
+    max-height: 80%;
+}
+</style>
+
+
+
