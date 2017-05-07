@@ -111,7 +111,7 @@ articles.
                     usable = False
             if usable:
                 usable_articles.append(story)
-                
+
         # html = requests.get(story['web_url'])
 
         article_data = [{
@@ -127,11 +127,9 @@ articles.
 
 
 # author = 'larry'
-ay = AylienPuller()
-# nyt = NYTimesPuller()
-author = argv[1]
-ay.populate_author(author)
-
-# print nyt.get_articles_for_author(author)
-
-
+if __name__ == "__main__":
+    ay = AylienPuller()
+    # nyt = NYTimesPuller()
+    author = argv[1]
+    ay.populate_author(author)
+    # print nyt.get_articles_for_author(author)
