@@ -85,7 +85,6 @@ export default {
 	async fetch({ store, params, req }) {
 		try {
 			let token = req.cookies.token
-			console.log('THE TOKEN:', token)
 			let { data } = await axios.get(`/api/users/${params.username}`, {
 				withCredentials: true,
 				headers: {

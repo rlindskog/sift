@@ -2,7 +2,8 @@
 	<div id="user">
 		<p>This is users.</p>
 		<div v-for="user in $store.state.lists.users" key="user.index">
-			<h4>{{ user.username }}</h4>
+			<nuxt-link :to="'/users/' + user.username "><h4>{{user.username}}</h4></nuxt-link>
+			
 			<ul>
 				<li>{{ user.email }}</li>
 				<li>{{ user.createdAt }}</li>
