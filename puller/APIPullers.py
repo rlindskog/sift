@@ -57,9 +57,13 @@ rendering it as headline.main : headline.kicker
         """
         main = headline_dict['main']
         kicker = headline_dict.get('content_kicker')
-        if kicker is None:
-            return main
-        return u'{0} : {1}'.format(main, kicker)
+        content_kicker = headline_dict.get('content_kicker')
+        ending = u""
+        if kicker is not None:
+            ending = u" : {0}".format(kicker)
+        elif content_kicker is not None:
+            ending = u" : {0}".format(content_kicker)
+        return u'{0}{1}'.format(main, ending)
 
     def _byline_to_author(self, byline_dict):
         """Helper for turning byline dict into a single author:
@@ -74,6 +78,13 @@ to capitalization.
         return u' '.join([x.capitalize() for x in terms])
 
     def get_articles_for_author(self, author_full_name):
+        res_dict = self._get_author_articles_dict(author_full_name)
+        return self._dict_to_article_entry(res_dict)
+
+    def _get_author_articles_dict(self, author_full_name):
+        """Gets the first 10 results for a query by the author and then
+turns it into a python dict
+        """
         url = '''https://api.nytimes.com/svc/search/v2/articlesearch.json'''
         payload = {
             'api_key': config.credentials["NYTimesPuller"]["api_key"],
@@ -81,6 +92,12 @@ to capitalization.
         }
         res = requests.get(url, params=payload)
         res_dict = json.loads(res.text)
+        return res_dict
+
+    def _dict_to_article_entry(self, res_dict):
+        """Converts a result dict into a dict that can be POSTed to
+articles.
+        """
         stories = res_dict['response']['docs']
         needed_keys = ['byline', 'source', 'web_url', 'pub_date',
                        'headline']
