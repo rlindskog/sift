@@ -1,41 +1,57 @@
 <template>
-		<v-toolbar class='sticky'>
+		<v-toolbar class="sticky grey">
 		  	<!-- <v-toolbar-logo>Logo</v-toolbar-logo> -->
 		  	<v-toolbar-items>
+	      	<img id="logo" :src="headlinelogo">
 
+		      <v-toolbar-title></v-toolbar-title>
+		      <v-toolbar-items>
+			      <v-toolbar-items>
+			        <v-toolbar-item ripple class="nav-item" router to="/" exact>Home</v-toolbar-item>
+			        <v-toolbar-item ripple class="nav-item" router to="/about">About</v-toolbar-item>
+		     		</v-toolbar-items>
 
-        <img :src="headlinelogo">
+		     		<v-menu bottom left offset-y origin="top right" transition="v-slide-y-transition">
+				      <v-btn icon dark slot="activator">
+				        <v-icon>more_vert</v-icon>
+				      </v-btn>
+			      <v-list v-if="$store.state.isAuthenticated">
+			        <v-list-item>
+			          <v-list-tile>
+			            <v-list-tile-title router to="/signout">Sign Out</v-list-tile-title>
+			          </v-list-tile>
+			        </v-list-item>
+			        <v-list-item>
+			          <v-list-tile>
+			            <v-list-tile-title>Settings</v-list-tile-title>
+			          </v-list-tile>
+			        </v-list-item>
+			      </v-list>
 
-      <v-toolbar-title> </v-toolbar-title>
-      <v-toolbar-item primary dark ripple>
-        <v-icon small class="white--text text--darken-2">search</v-icon>
-      </v-toolbar-item>
-      <v-toolbar-item>
-        <v-icon small class="white--text text--darken-2">settings</v-icon>
-      </v-toolbar-item>
-      <span v-if="$store.state.isAuthenticated">
+			      <v-list v-else>
+			        <v-list-item>
+			          <v-list-tile ripple>
+			            <v-list-tile-title router to="/signin">Sign In</v-list-tile-title>
+			          </v-list-tile>
+			        </v-list-item>
+			        <v-list-item>
+			          <v-list-tile ripple>
+			            <v-list-tile-title router to="/signout">Register</v-list-tile-title>
+			          </v-list-tile>
+			        </v-list-item>
+			      </v-list>
 
-        <v-toolbar-item class="nav-item" to="/register">Register</v-toolbar-item>
-        <v-toolbar-item class="nav-item" to="/signin">Signin</v-toolbar-item>
-      </span>
-      <span v-else>
-
-        <v-toolbar-item class="nav-item" to="/" exact>Home</v-toolbar-item>
-        <v-toolbar-item class="nav-item" to="/about">About</v-toolbar-item>
-      </span>
-
+			    </v-menu>
+     		</v-toolbar-items>
 
     </v-toolbar-items>
   </v-toolbar>
 
 </template>
 
-
 <!-- <v-toolbar-items class="hidden-sm-and-down">
     <v-toolbar-item v-for="item in items">{{ item.text }}</v-toolbar-item>
   </v-toolbar-items> -->
-
-
 
 <script>
 	import headlinelogo from '~/assets/images/Headline_LOGO.svg'
@@ -51,54 +67,18 @@
 
 <style>
 
-/*#nav-bar {
-	z-index: 999;
-	top: 0;
-	position: fixed;
-	width: 100%;
-	background-color: white;
-	box-shadow: 0 5px 10px rgba(0,0,0,0.19);
-}
-
-	#nav-bar {
-		z-index: 999;
-		top: 0;
-		position: fixed;
-		width: 100%;
-		background-color: white;
-		box-shadow: 0 5px 10px rgba(0,0,0,0.19);
+	#logo {
+		position: auto;
+		z-index: 5000;
 	}
-
-	ul {
-		width: 100%;
-		list-style: none;
-		display: block;
-		margin-right: 10px;
-	}
-
-	.nav-item {
-		text-decoration: none;
-		color: black;
-		padding-left: 10px;
-		padding-right: 10px;
-	}
-	.nav-item {
-		color: black;
-		transition: color .5s;
-	}
-.nuxt-link-active {
-	color: red;
-	transition: color .5s;
-}*/
 	.nuxt-link-active {
 		color: red;
 		transition: color .5s;
 	}
 
 	.sticky {
+		top: 0;
 		position: fixed;
-		z-index: 10;
-		margin-top: -15px;
 	}
 
 	
