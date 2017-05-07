@@ -1,3 +1,4 @@
+from abc import ABCMeta, abstractmethod
 import requests
 import json
 
@@ -5,7 +6,22 @@ import config
 
 
 class APIPuller(object):
-    pass
+    __metaclass__ = ABCMeta
+
+    def post_to_articles(self, article_data):
+        requests.post(
+            config.hostname + config.article_path,
+            data=article_data,
+        )
+
+    def populate_author(self, author_full_name):
+        vals = self.get_articles_for_author(author_full_name)
+        for val in vals:
+            self.post_to_articles(val)
+
+    @abstractmethod
+    def get_articles_for_author(self, author_full_name):
+        pass
 
 
 class AylienPuller(APIPuller):
@@ -30,4 +46,78 @@ class AylienPuller(APIPuller):
             'pub_date': story['published_at'],
             'title': story['title'],
         } for story in dict_response['stories']]
+        return article_data
+
+
+class NYTimesPuller(APIPuller):
+
+    def _headline_to_title(self, headline_dict):
+        """Helper for turning headline dict into a single title, by
+rendering it as headline.main : headline.kicker
+        """
+        main = headline_dict['main']
+        kicker = headline_dict.get('content_kicker')
+        content_kicker = headline_dict.get('content_kicker')
+        ending = u""
+        if kicker is not None:
+            ending = u" : {0}".format(kicker)
+        elif content_kicker is not None:
+            ending = u" : {0}".format(content_kicker)
+        return u'{0}{1}'.format(main, ending)
+
+    def _byline_to_author(self, byline_dict):
+        """Helper for turning byline dict into a single author:
+'By JOHN DOE' to 'John Doe' -- yes, this is really lossy with respect
+to capitalization.
+        """
+        original_field = byline_dict['original']
+        stripped = original_field[3:]
+        # Turn the name into lower case terms
+        terms = stripped.lower().split()
+        # rejoin them into first-letter-capitalized form
+        return u' '.join([x.capitalize() for x in terms])
+
+    def get_articles_for_author(self, author_full_name):
+        res_dict = self._get_author_articles_dict(author_full_name)
+        return self._dict_to_article_entry(res_dict)
+
+    def _get_author_articles_dict(self, author_full_name):
+        """Gets the first 10 results for a query by the author and then
+turns it into a python dict
+        """
+        url = '''https://api.nytimes.com/svc/search/v2/articlesearch.json'''
+        payload = {
+            'api_key': config.credentials["NYTimesPuller"]["api_key"],
+            'q': author_full_name,
+        }
+        res = requests.get(url, params=payload)
+        res_dict = json.loads(res.text)
+        return res_dict
+
+    def _dict_to_article_entry(self, res_dict):
+        """Converts a result dict into a dict that can be POSTed to
+articles.
+        """
+        stories = res_dict['response']['docs']
+        needed_keys = ['byline', 'source', 'web_url', 'pub_date',
+                       'headline']
+        usable_articles = []
+        # Remove the ones that are missing at least one of the
+        # needed_keys
+        for story in stories:
+            usable = True
+            for needed_key in needed_keys:
+                if story[needed_key] is None:
+                    usable = False
+            if usable:
+                usable_articles.append(story)
+        article_data = [{
+            'publication': story['source'],
+            # NY Times renders author as byline.original =
+            # "By <CAPITALIZED AUTHOR NAME>" (thanks guys...)
+            'author': self._byline_to_author(story['byline']),
+            'url': story['web_url'],
+            'pub_date': story['pub_date'],
+            'title': self._headline_to_title(story['headline']),
+        } for story in usable_articles]
         return article_data
